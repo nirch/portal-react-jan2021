@@ -1,0 +1,10 @@
+.login-err
+{
+    display: flex;
+    column-gap: 10px;
+}
+.login_error_message
+{
+    font-size:20px;
+    line-height: 18px;
+}

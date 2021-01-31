@@ -1,11 +1,11 @@
 import React from 'react';
-import "./LoginError.css";
+import "./Alert.css";
 import {  Button } from 'react-bootstrap'
 
 import ErrorImage from "../../assets/Login/Pictures/err.svg";
-function LoginError(props)
+function Alert(props)
 {
-    const errorLoginDiv= 
+    const errorDiv= 
     <div  className="login-err">
         <img src={ErrorImage}  alt="error"/>
         <div className="login_error_message"> {props.message}</div> 
@@ -14,7 +14,7 @@ function LoginError(props)
 
 
     return (<div>
-            {props.message? errorLoginDiv:""}
+            {props.message? errorDiv:""}
     </div>);
 }
-export default LoginError;
+export default Alert;

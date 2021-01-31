@@ -2,17 +2,17 @@ import React, { useState, useContext } from 'react';
 import { Container, Form, Button } from 'react-bootstrap'
 import './login.css'
 import server from '../../shared/server'
-import LoginError from "../../components/LoginError/LoginError";
+import Alert from "../../components/LoginError/Alert";
 import { Redirect } from 'react-router-dom'
 import ActiveUserContext from '../../shared/activeUserContext'
 import AppleImage from "../../assets/Login/Pictures/01.svg";
-import ErrorImage from "../../assets/Login/Pictures/err.svg";
 const LoginPage = (props) => {
     const { handleLogin } = props;
     const [email, setEmail] = useState("");
     const [pwd, setPwd] = useState("");
     const activeUser = useContext(ActiveUserContext);
     const [errorMessage,setErrorMessage]=useState("");
+    
     const login = () => {
 
         if(!email || !pwd)
@@ -70,7 +70,7 @@ const LoginPage = (props) => {
                     </Button> 
                 </div>
             </Form>
-          <LoginError close={closeError} message={errorMessage}/>
+          <Alert close={closeError} message={errorMessage}  />
         </Container>
        
        </div>
