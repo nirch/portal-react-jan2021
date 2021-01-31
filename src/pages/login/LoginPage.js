@@ -2,21 +2,23 @@ import React, { useState, useContext } from 'react';
 import { Container, Form, Button } from 'react-bootstrap'
 import './login.css'
 import server from '../../shared/server'
+import Alert from "../../components/Alert/Alert";
 import { Redirect } from 'react-router-dom'
 import ActiveUserContext from '../../shared/activeUserContext'
 import AppleImage from "../../assets/Login/Pictures/01.svg";
-
 const LoginPage = (props) => {
     const { handleLogin } = props;
     const [email, setEmail] = useState("");
     const [pwd, setPwd] = useState("");
     const activeUser = useContext(ActiveUserContext);
     const [errorMessage,setErrorMessage]=useState("");
+    const ERROR_TYPE=1;
+   /* const INFO_TYPE=2;*/
     const login = () => {
 
         if(!email || !pwd)
 		{
-            alert("נא להזין פרטי משתמש");
+           // alert("נא להזין פרטי משתמש");
             setErrorMessage("נא להזין פרטי משתמש");
 			return;
         }
@@ -27,7 +29,7 @@ const LoginPage = (props) => {
             if (res.data.error) 
             {
                 setErrorMessage ("שם משתמש או סיסמא שגויים!");
-                alert("error in login");
+               // alert("error in login");
             } 
             else {
                 
@@ -37,13 +39,17 @@ const LoginPage = (props) => {
             console.error(err);
         })
     }
+    function closeError(e) //close the error place
+    {
+        setErrorMessage("");
+    }
 
     if (activeUser) {
         return <Redirect to='/courses' />
     }
-
+    
     return (
-
+        <div className="login-overall-wrapper">
         <Container className="p-login">
             <img src={AppleImage} alt="Logo" className="login-logo" />
             <Form>
@@ -58,14 +64,21 @@ const LoginPage = (props) => {
                     <Form.Control   className="f-login password-login" value={pwd} type="password" placeholder="סיסמה" onChange={e => setPwd(e.target.value)}/>
                 </Form.Group>
                 </div>
+
                 <div className="Login-button-wrapper">
-                <Button variant="primary" type="button" className="button-login" onClick={login}>
-                    התחברות
-                </Button> </div>
+                    <Button variant="primary" type="button" className="button-login" onClick={login}>
+                        התחברות
+                    </Button> 
+                </div>
             </Form>
-           <Container className="login-err">{errorMessage}</Container>
-        </Container>
        
+        </Container>
+        
+        <div className="alert-wrapper">
+            <Alert close={closeError} message={errorMessage}  type={ERROR_TYPE} /> 
+        </div>
+       
+       </div>
     );
 }
 

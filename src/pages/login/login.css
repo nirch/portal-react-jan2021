@@ -1,11 +1,15 @@
 .p-login
 {
-    
+        
     color:white;
     background-color: #1b166e;
-    height: 100%;
-   
+    height: 100vh;
 }
+.p-login ::placeholder 
+ { /* Most modern browsers support this now. */
+    color:    white;
+ }
+
 .f-login
 {
     color:white;
@@ -49,8 +53,4 @@
 .login-Fields-wrapper
 {
     margin-top:172px;
-}
-.login-err
-{
-    color:#ffa1a1;
 }
