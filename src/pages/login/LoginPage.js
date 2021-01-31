@@ -5,7 +5,7 @@ import server from '../../shared/server'
 import { Redirect } from 'react-router-dom'
 import ActiveUserContext from '../../shared/activeUserContext'
 import AppleImage from "../../assets/Login/Pictures/01.svg";
-
+import ErrorImage from "../../assets/Login/Pictures/err.svg";
 const LoginPage = (props) => {
     const { handleLogin } = props;
     const [email, setEmail] = useState("");
@@ -43,7 +43,7 @@ const LoginPage = (props) => {
     }
 
     return (
-
+        <div className="login-overall-wrapper">
         <Container className="p-login">
             <img src={AppleImage} alt="Logo" className="login-logo" />
             <Form>
@@ -63,9 +63,14 @@ const LoginPage = (props) => {
                     התחברות
                 </Button> </div>
             </Form>
-           <Container className="login-err">{errorMessage}</Container>
+          
         </Container>
-       
+        <Container className="login-err">
+            <img src={ErrorImage} />
+            {errorMessage} 
+            
+            </Container>
+       </div>
     );
 }
 
