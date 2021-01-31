@@ -3,6 +3,8 @@ import './hours.css'
 import PortalNavbar from '../../components/navbar/PortalNavbar';
 import ActiveUserContext from '../../shared/activeUserContext'
 import { Redirect } from 'react-router-dom'
+import EmployeeHoursReports from '../../components/EmployeeHoursReports/EmployeeHoursReports';
+import { Accordion } from 'react-bootstrap';
 
 const HoursApprovePage = (props) => {
     const { handleLogout } = props;
@@ -16,6 +18,9 @@ const HoursApprovePage = (props) => {
         <div className="p-hours-approve">
             <PortalNavbar handleLogout={handleLogout}/>
             <h1>אישור שעות</h1>
+            <Accordion>
+                <EmployeeHoursReports reports={[{firstname:'שמעון', lastname:'גדיש', approved:50, unapproved:50, rejected:50}]}/>
+            </Accordion>
         </div>
     );
 }

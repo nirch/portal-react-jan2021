@@ -1,0 +1,42 @@
+.c-employee-hours-reports{
+    box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.1);
+}
+
+.c-employee-hours-reports > button{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 9px 19px 10px 13px;
+    color: #5d5d5d;
+    background-color: rgb(255, 255, 255);
+    border: unset;
+}
+
+.c-employee-hours-reports .employee-name{
+    margin-left: auto;
+    font-size: 18px;
+    font-family: Assistant-SemiBold;
+    
+}
+
+.c-employee-hours-reports .hours{
+    font-size: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 80px;
+    
+}
+
+.c-employee-hours-reports .unapproved{
+    color: #f5cc0c;
+}
+.c-employee-hours-reports .approved{
+    color: #338d12;
+}
+.c-employee-hours-reports .rejected{
+    color: #ff0000;
+}
