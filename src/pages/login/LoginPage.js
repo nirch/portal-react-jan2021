@@ -12,7 +12,8 @@ const LoginPage = (props) => {
     const [pwd, setPwd] = useState("");
     const activeUser = useContext(ActiveUserContext);
     const [errorMessage,setErrorMessage]=useState("");
-    
+    const ERROR_TYPE=1;
+    const INFO_TYPE=2;
     const login = () => {
 
         if(!email || !pwd)
@@ -70,9 +71,12 @@ const LoginPage = (props) => {
                     </Button> 
                 </div>
             </Form>
-          <Alert close={closeError} message={errorMessage}  />
-        </Container>
        
+        </Container>
+        <div className="alert-wrapper">
+            <Alert close={closeError} message={errorMessage}  type={ERROR_TYPE} /> 
+        </div>
+
        </div>
     );
 }

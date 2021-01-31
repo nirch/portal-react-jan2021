@@ -1,10 +1,23 @@
 .login-err
 {
-    display: flex;
-    column-gap: 10px;
+  width:100%;
+  color:#ffa1a1;
+  background-color: white;
+  margin-top:-20px;
 }
 .login_error_message
 {
     font-size:20px;
     line-height: 18px;
+}
+
+.login-error-close-button
+{
+    background-color: white;
+    color:#5d5d5d;
+    border:none;
+}
+.login-error-close-button:hover
+{
+    cursor: pointer;
 }
