@@ -15,3 +15,7 @@
 .c-portal-button-set>button.selected {
     font-family: Assistant-SemiBold;
 }
+
+.c-portal-button-set.hasTopBorder {
+    box-shadow: inset 0px 2px 8px 0px #EAEAEA;
+}
