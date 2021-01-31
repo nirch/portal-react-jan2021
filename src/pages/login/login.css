@@ -1,0 +1,56 @@
+.p-login
+{
+    
+    color:white;
+    background-color: #1b166e;
+    height: 100%;
+   
+}
+.f-login
+{
+    color:white;
+    background-color: #1b166e;
+    border-radius: 50px;
+    height:50px;
+    font-size:25px;
+    line-height: 25px;
+    text-align: center;
+}
+.f-login:focus
+{
+    color:white;
+    background-color: #1b166e;
+}
+.login-logo
+{
+    display: block;
+    margin: auto;
+    padding-top:38px;
+}
+.button-login
+{
+    color:#1b166e;
+    background-color: white;
+    border-radius:50px;
+    width:312.2px;
+    height: 50px;
+    font-size:30px;
+    line-height: 11px;
+    border:1px;
+    margin-bottom:22px;
+  
+}
+.Login-button-wrapper
+{
+    margin-top: 203px;
+    display: flex;
+    justify-content: center;
+}
+.login-Fields-wrapper
+{
+    margin-top:172px;
+}
+.login-err
+{
+    color:#ffa1a1;
+}
