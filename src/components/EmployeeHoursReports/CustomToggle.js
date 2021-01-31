@@ -9,7 +9,7 @@ const CustomToggle = ({ children, eventKey }) => {
     });
     
     return (
-        <button type="button" onClick={decoratedOnClick}>
+        <button className='report-header' type="button" onClick={decoratedOnClick}>
             {children}
         </button>
     );

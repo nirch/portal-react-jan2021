@@ -40,3 +40,44 @@
 .c-employee-hours-reports .rejected{
     color: #ff0000;
 }
+
+.c-employee-hours-reports .report-body .mass-buttons{
+    padding: 0 16px;
+    font-size: 10px;
+    margin-top: 15px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.c-employee-hours-reports .report-body .mass-buttons .radio-group{
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.c-employee-hours-reports .report-body .mass-buttons .radio{
+    width: 20px;
+    height: 20px;
+    border: solid 1px #707070;
+    border-radius: 50%;
+    margin-left: 7px;
+}
+
+.c-employee-hours-reports .report-body .mass-buttons .check-all{
+    margin-left: auto;
+}
+
+.c-employee-hours-reports .report-body .mass-buttons .mass-approve {
+    margin-left: 19px;
+}
+
+.c-employee-hours-reports .report-body .mass-buttons .mass-approve .radio{
+    background-color: #a1d47f;
+}
+
+.c-employee-hours-reports .report-body .mass-buttons .mass-deny .radio{
+    background-color: #ffa1a1
+
+    ;
+}

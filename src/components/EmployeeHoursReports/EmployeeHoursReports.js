@@ -21,8 +21,21 @@ const EmployeeHoursReports = ({reports}) => {
                 </div>
                 <div className='arrow'></div>
             </CustomToggle>
-            <Accordion.Collapse eventKey="0">
-            <div>Hello! I'm the body</div>
+            <Accordion.Collapse className='report-body' eventKey="0">
+                <div className='mass-buttons'>
+                    <div className='check-all radio-group'>
+                        <div className='radio'></div>
+                        <div className='radio-text'>סמן הכל</div>
+                    </div>
+                    <div className='mass-approve radio-group'>
+                        <div className='radio'></div>
+                        <div className='radio-text'>אישור מסומנים</div>
+                    </div>
+                    <div className='mass-deny radio-group'>
+                        <div className='radio'></div>
+                        <div className='radio-text'>דחיית מסומנים</div>
+                    </div>
+                </div>
             </Accordion.Collapse>
         </div>
     );
