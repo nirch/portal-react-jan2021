@@ -2,6 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Container, Form, Button } from 'react-bootstrap'
 import './login.css'
 import server from '../../shared/server'
+import LoginError from "../../components/LoginError/LoginError";
 import { Redirect } from 'react-router-dom'
 import ActiveUserContext from '../../shared/activeUserContext'
 import AppleImage from "../../assets/Login/Pictures/01.svg";
@@ -46,12 +47,13 @@ const LoginPage = (props) => {
         return <Redirect to='/courses' />
     }
     const ErrorImageDiv=  <img src={ErrorImage}  alt="error"/>;
-    const errorLoginDiv = <Container className="login-err">
+    const errorLoginDiv = 
+    <Container className="login-err">
 
-    {errorMessage ? ErrorImageDiv:""} {/* if there is no error don't display the image*/}
-    <div className="login_error_message"> {errorMessage}</div> 
-
-    <Button className="login-error-close-button" type="button" onClick={closeError} >&#10006;</Button>
+        {errorMessage ? ErrorImageDiv:""} {/* if there is no error don't display the image*/}
+        <div className="login_error_message"> {errorMessage}</div> 
+        <Button className="login-error-close-button" type="button" onClick={closeError} >&#10006;</Button>
+    
     </Container>;
 
     return (
@@ -77,7 +79,7 @@ const LoginPage = (props) => {
                     </Button> 
                 </div>
             </Form>
-          {errorMessage?errorLoginDiv:""}
+          {errorMessage?errorLoginDiv:""} <LoginError close={closeError} message={errorMessage}/>
         </Container>
        
        </div>
