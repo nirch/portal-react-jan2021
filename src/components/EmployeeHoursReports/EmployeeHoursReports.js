@@ -1,5 +1,5 @@
 import './EmployeeHoursReports.css'
-import React from 'react';
+import React, { useState } from 'react';
 import { Accordion } from 'react-bootstrap';
 import CustomToggle from './CustomToggle';
 
@@ -8,6 +8,7 @@ import CustomToggle from './CustomToggle';
 
 const EmployeeHoursReports = ({reports}) => {
     const {firstname, lastname, approved, unapproved, rejected } = reports[0];
+    const [isAllChecked, setIsAllChecked] = useState(false);
 
     return (
         <div className='c-employee-hours-reports'>
@@ -23,8 +24,10 @@ const EmployeeHoursReports = ({reports}) => {
             </CustomToggle>
             <Accordion.Collapse className='report-body' eventKey="0">
                 <div className='mass-buttons'>
-                    <div className='check-all radio-group'>
-                        <div className='radio'></div>
+                    <div className='check-all radio-group' onClick={() => setIsAllChecked(!isAllChecked)}>
+                        <div className='radio'>
+                            <div className={isAllChecked ? 'radio-fill-full' : 'radio-fill'}></div>
+                        </div>
                         <div className='radio-text'>סמן הכל</div>
                     </div>
                     <div className='mass-approve radio-group'>
