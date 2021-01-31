@@ -13,7 +13,7 @@ const LoginPage = (props) => {
     const activeUser = useContext(ActiveUserContext);
     const [errorMessage,setErrorMessage]=useState("");
     const ERROR_TYPE=1;
-    const INFO_TYPE=2;
+   /* const INFO_TYPE=2;*/
     const login = () => {
 
         if(!email || !pwd)
