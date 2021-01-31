@@ -73,10 +73,11 @@ const LoginPage = (props) => {
             </Form>
        
         </Container>
+        
         <div className="alert-wrapper">
             <Alert close={closeError} message={errorMessage}  type={ERROR_TYPE} /> 
         </div>
-
+       
        </div>
     );
 }
