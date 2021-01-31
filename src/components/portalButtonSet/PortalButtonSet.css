@@ -11,3 +11,7 @@
     font-size: 15px;
     font-family: Assistant-Light;
 }
+
+.c-portal-button-set>button.selected {
+    font-family: Assistant-SemiBold;
+}
