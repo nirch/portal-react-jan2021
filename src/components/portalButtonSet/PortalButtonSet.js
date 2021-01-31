@@ -1,8 +1,15 @@
 import './PortalButtonSet.css'
 
 function PortalButtonSet(props) {
-    return(
-        <div className="c-portal-button-set">PortalButtonSet</div>
+
+    const { buttons } = props;
+
+    const buttonSetView = buttons.map(btn => <button key={btn.key} type="button">{btn.label}</button>);
+
+    return (
+        <div className="c-portal-button-set">
+            {buttonSetView}
+        </div>
     );
 }
 
