@@ -2,7 +2,7 @@ import React, { useState, useContext } from 'react';
 import { Container, Form, Button } from 'react-bootstrap'
 import './login.css'
 import server from '../../shared/server'
-import Alert from "../../components/LoginError/Alert";
+import Alert from "../../components/Alert/Alert";
 import { Redirect } from 'react-router-dom'
 import ActiveUserContext from '../../shared/activeUserContext'
 import AppleImage from "../../assets/Login/Pictures/01.svg";
