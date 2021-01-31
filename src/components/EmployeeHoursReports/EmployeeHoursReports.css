@@ -32,13 +32,13 @@
     
 }
 
-.c-employee-hours-reports .unapproved{
+.c-employee-hours-reports .hours .unapproved{
     color: #f5cc0c;
 }
-.c-employee-hours-reports .approved{
+.c-employee-hours-reports .hours .approved{
     color: #338d12;
 }
-.c-employee-hours-reports .rejected{
+.c-employee-hours-reports .hours .rejected{
     color: #ff0000;
 }
 
@@ -85,8 +85,8 @@
     background-color: #a1d47f;
 }
 
-.c-employee-hours-reports .report-body .mass-buttons .mass-deny .radio{
-    background-color: #ffa1a1
+.c-employee-hours-reports .report-body .mass-buttons .mass-reject .radio{
+    background-color: #ffa1a1;
 
     ;
 }

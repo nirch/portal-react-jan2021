@@ -1,0 +1,69 @@
+.c-reporting-buttons{
+    margin-top: 21.7px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+
+}
+
+.c-reporting-buttons .buttons{
+    font-size: 9px;
+    width: 93px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-left: 15.3px;
+}
+
+.c-reporting-buttons .radio-group{
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.c-reporting-buttons .radio-group .radio{
+    width: 15.2px;
+    height: 15.2px;
+    border: solid 0.5px #707070;
+    border-radius: 50%;
+    background-color: #f8f8f8;
+    margin-top: 5px;
+}
+
+.c-reporting-buttons .radio-group .radio.active{
+    border-color: inherit;
+    background-color: #fff;
+
+}
+
+.c-reporting-buttons .radio-group .radio-fill{
+    width: 7.3px;
+    height: 7.3px;
+    border-radius: 50%;
+    margin: 3.2px;
+}
+
+.c-reporting-buttons .reject{
+    color: #ffa1a1;
+}
+
+.c-reporting-buttons .reject .radio-fill{
+    background-color: #ffa1a1;
+}
+
+.c-reporting-buttons .unapproved{
+    color: #f5cc0c;
+}
+
+.c-reporting-buttons .unapproved .radio-fill{
+    background-color: #f5cc0c;
+}
+
+.c-reporting-buttons .approve{
+    color: #a1d47f;
+}
+
+.c-reporting-buttons .approve .radio-fill{
+    background-color: #a1d47f;
+}
