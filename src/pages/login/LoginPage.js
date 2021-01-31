@@ -46,16 +46,7 @@ const LoginPage = (props) => {
     if (activeUser) {
         return <Redirect to='/courses' />
     }
-    const ErrorImageDiv=  <img src={ErrorImage}  alt="error"/>;
-    const errorLoginDiv = 
-    <Container className="login-err">
-
-        {errorMessage ? ErrorImageDiv:""} {/* if there is no error don't display the image*/}
-        <div className="login_error_message"> {errorMessage}</div> 
-        <Button className="login-error-close-button" type="button" onClick={closeError} >&#10006;</Button>
     
-    </Container>;
-
     return (
         <div className="login-overall-wrapper">
         <Container className="p-login">
@@ -79,7 +70,7 @@ const LoginPage = (props) => {
                     </Button> 
                 </div>
             </Form>
-          {errorMessage?errorLoginDiv:""} <LoginError close={closeError} message={errorMessage}/>
+          <LoginError close={closeError} message={errorMessage}/>
         </Container>
        
        </div>
