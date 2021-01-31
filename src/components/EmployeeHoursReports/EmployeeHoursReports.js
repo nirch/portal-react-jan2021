@@ -1,6 +1,7 @@
 import './EmployeeHoursReports.css'
 import React from 'react';
 import { Accordion } from 'react-bootstrap';
+import CustomToggle from './CustomToggle';
 
 // array of reports
 // calculate the hours
@@ -10,7 +11,7 @@ const EmployeeHoursReports = ({reports}) => {
 
     return (
         <div className='c-employee-hours-reports'>
-            <Accordion.Toggle eventKey="0">
+            <CustomToggle eventKey="0">
                 <div className='employee-name'>{firstname} {lastname}</div>
                 <div className='hours'>
                     <div className='unapproved'>{unapproved}</div>
@@ -19,7 +20,7 @@ const EmployeeHoursReports = ({reports}) => {
                     <div className='total'>{unapproved+approved+rejected}</div>
                 </div>
                 <div className='arrow'></div>
-            </Accordion.Toggle>
+            </CustomToggle>
             <Accordion.Collapse eventKey="0">
             <div>Hello! I'm the body</div>
             </Accordion.Collapse>
