@@ -54,20 +54,3 @@
 {
     margin-top:172px;
 }
-.login-err
-{
-    color:#ffa1a1;
-    display:flex;
-    
-    background-color: white;
-}
-.login-error-close-button
-{
-    background-color: white;
-    color:#5d5d5d;
-    border:none;
-}
-.login-error-close-button:hover
-{
-    cursor: pointer;
-}
