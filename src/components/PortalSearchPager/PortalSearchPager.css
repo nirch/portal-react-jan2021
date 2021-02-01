@@ -1,0 +1,32 @@
+.p-input-pager {
+    display: flex;
+    border: 1px solid rgba(188 ,188 ,188, 0.15);
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 23px;
+    width: 100%;
+    height: 45px;
+    font-size: 1.6em;
+    background-color: rgba(188 ,188 ,188, 0.15);
+   
+  }
+  
+  .p-input-pager > form{
+      flex-grow: 1;
+  }
+  .p-input-pager_input {
+    border: none;
+    outline: none;
+    background-color: transparent;
+    width: 100%;
+    padding: 0 10px;
+  }
+  
+  .p-paging {
+    display: flex;
+    margin-left: 10px;
+    align-items: center;
+  }
+  .p-paging > span{
+      display: flex;
+  }
