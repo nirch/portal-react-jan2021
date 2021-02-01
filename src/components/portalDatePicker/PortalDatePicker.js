@@ -1,20 +1,31 @@
 import './PortalDatePicker.css';
 
 function PortalDatePicker(props) {
-    const { date } = props;
+    const { date, handleDateSelection } = props;
+
+    function handleClick(step) {
+        let newDate = date ? new Date(date.year + "-" + date.month + "-" + date.day) : new Date();
+        newDate.setDate(newDate.getDate() + step);
+        const newDateObj = {
+            "day": newDate.getDate(),
+            "month": newDate.getMonth() + 1,
+            "year": newDate.getFullYear()
+        }
+
+        handleDateSelection(newDateObj);
+    }
+
+    function pad(s) { return (s < 10) ? '0' + s : s; }
 
     const dateView = () => {
-        const cDate = new Date(date.year, date.month, date.day);
-        const dd = String(cDate.getDate()).padStart(2, '0');
-        const mm = String(cDate.getMonth() + 1).padStart(2, '0'); //January is 0!
-        const yyyy = cDate.getFullYear();
-        const vdate =  mm + '/' + dd + '/' + yyyy;
-        return vdate;
+
+        const cDate = date ? new Date(date.year + "-" + date.month + "-" + date.day) : new Date();
+        return [pad(cDate.getDate()), pad(cDate.getMonth() + 1), cDate.getFullYear()].join('/');
     }
-     
-    return(
+
+    return (
         <div className="c-portal-date-picker">
-            <button type="button" className="button-next">&lt;</button>{ dateView() }<button type="button" className="button-back">&gt;</button>
+            <button type="button" className="button-next" onClick={() => handleClick(1)}>&lt;</button>{dateView()}<button type="button" className="button-back" onClick={() => handleClick(-1)}>&gt;</button>
         </div>
     );
 }
