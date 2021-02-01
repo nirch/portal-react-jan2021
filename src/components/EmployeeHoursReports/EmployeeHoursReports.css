@@ -1,6 +1,7 @@
 .c-employee-hours-reports{
     box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.1);
     margin-bottom: 12px;
+    padding-bottom: 1px;
 }
 
 .c-employee-hours-reports > button{
@@ -22,7 +23,7 @@
     line-height: 1.3;
 }
 
-.c-employee-hours-reports .hours{
+.c-employee-hours-reports .total-hours{
     font-size: 10px;
     display: flex;
     flex-wrap: wrap;
@@ -32,13 +33,13 @@
     
 }
 
-.c-employee-hours-reports .hours .unapproved{
+.c-employee-hours-reports .total-hours .unapproved{
     color: #f5cc0c;
 }
-.c-employee-hours-reports .hours .approved{
+.c-employee-hours-reports .total-hours .approved{
     color: #338d12;
 }
-.c-employee-hours-reports .hours .rejected{
+.c-employee-hours-reports .total-hours .rejected{
     color: #ff0000;
 }
 

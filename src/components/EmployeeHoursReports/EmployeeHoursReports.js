@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Accordion } from 'react-bootstrap';
 import CustomToggle from './CustomToggle';
 import ReportingButtons from './ReportingButtons/ReportingButtons';
+import ReportDetails from './ReportDetails/ReportDetails';
 
 // array of reports
 // calculate the hours
@@ -22,7 +23,7 @@ const EmployeeHoursReports = ({reports}) => {
         <div className='c-employee-hours-reports'>
             <CustomToggle eventKey="0">
                 <div className='employee-name'>{firstname} {lastname}</div>
-                <div className='hours'>
+                <div className='total-hours'>
                     <div className='unapproved'>{unapproved}</div>
                     <div className='approved'>{approved}</div>
                     <div className='rejected'>{rejected}</div>
@@ -49,6 +50,7 @@ const EmployeeHoursReports = ({reports}) => {
                         </div>
                     </div>
                     <ReportingButtons status={-1} onStatusSelect={onStatusSelect}/>
+                    <ReportDetails status={-1} checked={true}/>
                 </div>
             </Accordion.Collapse>
         </div>
