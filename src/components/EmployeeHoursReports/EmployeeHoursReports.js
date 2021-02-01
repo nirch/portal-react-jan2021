@@ -9,11 +9,11 @@ import arrow from '../../assets/images/arrow_left.png';
 // array of reports
 // calculate the hours
 
-const EmployeeHoursReports = ({reports}) => {
-    const {firstname, lastname, approved, unapproved, rejected } = reports[0];
+const EmployeeHoursReports = ({data}) => {
+    const {firstname, lastname, reports, reportingPerimeter } = data;
     const [isAllChecked, setIsAllChecked] = useState(false);
     const [isOpen, setIsOpen] = useState('');
-
+    const approved = 50, unapproved = 50, rejected = 50;            // temporary hard coded data
 
     function onStatusSelect(status){
         console.log(status);
@@ -35,9 +35,16 @@ const EmployeeHoursReports = ({reports}) => {
         setIsOpen(!isOpen);
     }
 
+    const reportsView = reports && reports.map(report => 
+        <div key={report.reportid}>
+            <ReportingButtons status={report.approval} onStatusSelect={onStatusSelect}/>
+            <ReportDetails status={report.approval} checked={false} report={report} reportingPerimeter={reportingPerimeter}/>
+        </div>
+    );
+
     return (
         <div className='c-employee-hours-reports'>
-            <CustomToggle eventKey="0" toggleClicked={toggleClicked}>
+            <CustomToggle eventKey={data.userid} toggleClicked={toggleClicked}>
                 <div className='employee-name'>{firstname} {lastname}</div>
                 <div className='total-hours'>
                     <div className='unapproved'>{unapproved}</div>
@@ -47,7 +54,7 @@ const EmployeeHoursReports = ({reports}) => {
                 </div>
                 <div className='arrow'><img className={arrowAnimationStyle} src={arrow}/></div>
             </CustomToggle>
-            <Accordion.Collapse eventKey="0">
+            <Accordion.Collapse eventKey={data.userid}>
                 <div className='report-body'>
                     <div className='mass-buttons'>
                         <div className='check-all radio-group' onClick={() => setIsAllChecked(!isAllChecked)}>
@@ -65,8 +72,7 @@ const EmployeeHoursReports = ({reports}) => {
                             <div className='radio-text'>דחיית מסומנים</div>
                         </div>
                     </div>
-                    <ReportingButtons status={1} onStatusSelect={onStatusSelect}/>
-                    <ReportDetails status={1} checked={true}/>
+                    {reportsView}
                 </div>
             </Accordion.Collapse>
         </div>

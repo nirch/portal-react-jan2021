@@ -2,22 +2,26 @@ import './ReportDetails.css';
 
 import React from 'react';
 
-const ReportDetails = ({status, checked}) => {
-    // const {status, } = details;
+const ReportDetails = (props) => {
+    const {status, checked, report, reportingPerimeter} = props;
 
     let bgColor;
-    if (status === -1){
+    if (status === '-1'){
         bgColor='#ffa1a1';
-    } else if (status === 0) {
+    } else if (status === '0') {
         bgColor='#f5cc0c';
-    } else if (status === 1) {
+    } else if (status === '1') {
         bgColor='#a1d47f';
     }
 
     const style = {
         backgroundColor:bgColor
     }
-    
+
+    const project = reportingPerimeter[report.projectid];
+    const course = project.courses.find(course => course.courseid === report.courseid);
+    const subject = project.subjects.find(subject => subject.reportsubjectid === report.actionid);;
+
     return (
         <div className='c-report-details' style={style}>
             <div className='headline'>
@@ -33,7 +37,7 @@ const ReportDetails = ({status, checked}) => {
                 </div>
                 <div className='date'>
                     <div className='title'>תאריך: </div>
-                    <div className='data'>27/12/19</div>
+                    <div className='data'>{report.date}</div>
                 </div>
                 <div className='hours'>
                     <div className='title'>סה"כ שעות: </div>
@@ -46,15 +50,15 @@ const ReportDetails = ({status, checked}) => {
             <div className='content'>
                 <div className='project'>
                     <div className='title'>פרויקט</div>
-                    <div className='data'>שם הפרויקט המלא</div>
+                    <div className='data'>{project.projectName}</div>
                 </div>
                 <div className='course-name'>
                     <div className='title'>מס/שם הקורס</div>
-                    <div className='data'>שם הקורס המלא</div>
+                    <div className='data'>{course ? course.courseName : 'כללי'}</div>
                 </div>
                 <div className='activity'>
                     <div className='title'>נושא פעילות</div>
-                    <div className='data'>שם נושא הפעילות המלא</div>
+                    <div className='data'>{subject.subject}</div>
                 </div>
             </div>
         </div>
