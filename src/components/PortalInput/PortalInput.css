@@ -1,0 +1,36 @@
+.portal-input
+{
+    width: 100%;
+    color:#5d5d5d;
+    background-color: white;
+    padding: 0 6px;
+}
+.portal-input ::placeholder 
+{
+    color:#5d5d5d !important;
+}
+.portal-input .portal-input-title
+{
+    font-size:16px;
+    line-height: 6px;
+    font-weight: 600;
+    margin-top:10px ;
+    margin-bottom:0;
+    display:block;
+  
+}
+.portal-input .portal-input-text
+{
+    border-style: none;
+    font-size:16px;
+    line-height: 6px;
+    font-weight: 200;
+    margin-top:12px;
+    margin-bottom:10px;
+    width:100%;
+}
+.portal-input .portal-input-text:focus
+{
+   
+   outline-style: none;
+}

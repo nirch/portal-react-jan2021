@@ -10,7 +10,7 @@
     color:    white;
  }
 
-.f-login
+ .p-login .f-login
 {
     color:white;
     background-color: #1b166e;
@@ -20,18 +20,18 @@
     line-height: 25px;
     text-align: center;
 }
-.f-login:focus
+.p-login .f-login:focus
 {
     color:white;
     background-color: #1b166e;
 }
-.login-logo
+.p-login .login-logo
 {
     display: block;
     margin: auto;
     padding-top:38px;
 }
-.button-login
+.p-login .button-login
 {
     color:#1b166e;
     background-color: white;
@@ -44,26 +44,20 @@
     margin-bottom:22px;
    
 }
-.Login-button-wrapper
+.p-login .Login-button-wrapper
 {
-   /* margin-top: 203px;*/
-   margin-top: 16vh;
+    margin-top: 16vh;
     display: flex;
     justify-content: center;
 }
-.login-Fields-wrapper
+.p-login .login-Fields-wrapper
 {
-   /* margin-top:172px; */
   margin-top: 16.2vh;
 }
-.login-overall-wrapper
+.p-login .login-overall-wrapper
 {
     position: relative;
 }
-.alert-wrapper
-{
-    position: absolute;
-    bottom:0vh;
-    width:100%;
 
-}
+
+
