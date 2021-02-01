@@ -1,0 +1,21 @@
+.c-portal-date-picker {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 86px;
+    font-size: Assistant-SemiBold;
+    font-size: 28px;
+}
+
+.c-portal-date-picker button {
+    background-color: white;
+    border: none;
+}
+
+.c-portal-date-picker .button-back {
+    margin-right: 13px;
+}
+
+.c-portal-date-picker .button-next {
+    margin-left: 13px;
+}
