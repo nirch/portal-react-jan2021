@@ -49,7 +49,7 @@
 .c-employee-hours-reports .report-header .arrow img{
     width: 14.1px;
     height: 14.1px;
-    transform: rotate(270deg);
+    transform: rotateZ(270deg);
     vertical-align: top;
 }
 
@@ -62,18 +62,18 @@
 
 @keyframes spin-up{
     from {
-        transform: rotate(270deg);
+        transform: rotateZ(270deg) rotateY(0deg);
     }
     to {
-        transform: rotate(90deg);
+        transform: rotateZ(270deg) rotateY(180deg);
     }
 }
 @keyframes spin-down{
     from {
-        transform: rotate(90deg);
+        transform: rotateZ(270deg) rotateY(180deg);
     }
     to {
-        transform: rotate(270deg);
+        transform: rotateZ(270deg)  rotateY(0deg);
     }
 }
 
