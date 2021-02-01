@@ -17,5 +17,5 @@
 }
 
 .c-portal-button-set.hasTopBorder {
-    box-shadow: inset 0px 2px 8px 0px #EAEAEA;
+    box-shadow: inset 0px 2px 8px 0px rgba(0, 0, 0, 0.1);
 }
