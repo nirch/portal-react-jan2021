@@ -1,0 +1,94 @@
+.c-report-details{
+    height: 73px;
+    margin-top: 11px;
+    margin-bottom: 22.3px;
+    padding: 7px 16px 16px 9.6px;
+    white-space: pre;
+}
+
+.c-report-details .headline .checkbox-Square{
+    width: 13px;
+    height: 13px;
+    background-color: #fff;
+    border: solid 1px #707070;
+    margin-left: 29px;
+}
+
+.c-report-details .headline .checkbox-fill{
+    width: 13px;
+    height: 13px;
+    margin-right: -1px;
+    margin-top: -1px;
+    background-color: #1b166e;    
+}
+
+.c-report-details .headline .checkbox-fill .checkmark{
+    transform: rotate(45deg);
+    margin-right: 4px;
+}
+
+.c-report-details .headline .checkbox-fill .checkmark-long{
+    width: 2px;
+    height: 6px;
+    margin-bottom: -0.1px;
+    background-color: #fff;
+}
+.c-report-details .headline .checkbox-fill .checkmark-short{
+    width: 4px;
+    height: 1.5px;
+    margin-top: 0;
+    background-color: #fff;
+}
+
+.c-report-details .headline .actions{
+    transform: rotate(90deg);
+}
+.c-report-details .headline .actions-dots{
+    /* font-size: 16px; */
+    font-family: Assistant-ExtraBold;
+}
+
+.c-report-details .headline{
+    width: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 9px;
+}
+
+.c-report-details .content{
+    width: auto;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 51px;
+}
+
+.c-report-details .headline .title, .c-report-details .headline .data{
+    font-size: 10px;
+    font-family: Assistant-SemiBold;
+    display: inline-block;
+}
+
+.c-report-details .headline .data{
+    margin-left: 22px;
+}
+
+.c-report-details .headline .actions{
+    margin-right: auto;
+}
+
+.c-report-details .content .title{
+    font-size: 8px;
+}
+
+.c-report-details .content .data{
+    font-size: 8px;
+    font-family: Assistant-SemiBold;
+}
+
+.c-report-details .content > div:not(:first-of-type){
+    text-align: center;
+}

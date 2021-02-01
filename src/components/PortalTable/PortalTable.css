@@ -1,0 +1,21 @@
+
+.c-table {
+    border-top-style: none;
+    border-left-style: none;
+    border-right-style: none;
+    border-bottom-style: none;
+}
+
+.c-table.no-border tr td, .c-table.no-border tr th{
+    border: none;
+  }
+
+.c-table.no-border tr th{
+  border: none;
+  text-align: center;
+}
+
+.c-table.no-border tr {
+  box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.1);
+}
+ 
