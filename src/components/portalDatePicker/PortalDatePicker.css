@@ -19,3 +19,8 @@
 .c-portal-date-picker .button-next {
     margin-left: 13px;
 }
+
+.c-portal-date-picker .date-view {
+    width: 116px;
+    text-align: center;
+}
