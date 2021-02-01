@@ -37,7 +37,7 @@
 
 }
 
-.c-reporting-buttons .radio-group .radio-fill{
+.c-reporting-buttons .radio-group .active > div{
     width: 7.3px;
     height: 7.3px;
     border-radius: 50%;
@@ -48,7 +48,7 @@
     color: #ffa1a1;
 }
 
-.c-reporting-buttons .reject .radio-fill{
+.c-reporting-buttons .reject .active > div{
     background-color: #ffa1a1;
 }
 
@@ -56,7 +56,7 @@
     color: #f5cc0c;
 }
 
-.c-reporting-buttons .unapproved .radio-fill{
+.c-reporting-buttons .unapproved .active > div{
     background-color: #f5cc0c;
 }
 
@@ -64,6 +64,6 @@
     color: #a1d47f;
 }
 
-.c-reporting-buttons .approve .radio-fill{
+.c-reporting-buttons .approve .active > div{
     background-color: #a1d47f;
 }
