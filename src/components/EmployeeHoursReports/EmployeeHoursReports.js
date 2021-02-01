@@ -36,7 +36,7 @@ const EmployeeHoursReports = ({reports}) => {
                     <div className='mass-buttons'>
                         <div className='check-all radio-group' onClick={() => setIsAllChecked(!isAllChecked)}>
                             <div className='radio'>
-                                <div className={isAllChecked ? 'radio-fill-full' : ''}></div>
+                                <div className={isAllChecked ? 'radio-fill' : ''}></div>
                             </div>
                             <div className='radio-text'>סמן הכל</div>
                         </div>
@@ -49,8 +49,8 @@ const EmployeeHoursReports = ({reports}) => {
                             <div className='radio-text'>דחיית מסומנים</div>
                         </div>
                     </div>
-                    <ReportingButtons status={-1} onStatusSelect={onStatusSelect}/>
-                    <ReportDetails status={-1} checked={true}/>
+                    <ReportingButtons status={1} onStatusSelect={onStatusSelect}/>
+                    <ReportDetails status={1} checked={true}/>
                 </div>
             </Accordion.Collapse>
         </div>
