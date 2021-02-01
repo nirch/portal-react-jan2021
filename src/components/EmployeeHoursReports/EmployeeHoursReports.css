@@ -4,7 +4,7 @@
     padding-bottom: 1px;
 }
 
-.c-employee-hours-reports > button{
+.c-employee-hours-reports > .report-header{
     width: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -16,14 +16,14 @@
     border: unset;
 }
 
-.c-employee-hours-reports .employee-name{
+.c-employee-hours-reports .report-header .employee-name{
     margin-left: auto;
     font-size: 18px;
     font-family: Assistant-SemiBold;
     line-height: 1.3;
 }
 
-.c-employee-hours-reports .total-hours{
+.c-employee-hours-reports .report-header .total-hours{
     font-size: 10px;
     display: flex;
     flex-wrap: wrap;
@@ -33,14 +33,48 @@
     
 }
 
-.c-employee-hours-reports .total-hours .unapproved{
+.c-employee-hours-reports .report-header .total-hours .unapproved{
     color: #f5cc0c;
 }
-.c-employee-hours-reports .total-hours .approved{
+.c-employee-hours-reports .report-header .total-hours .approved{
     color: #338d12;
 }
-.c-employee-hours-reports .total-hours .rejected{
+.c-employee-hours-reports .report-header .total-hours .rejected{
     color: #ff0000;
+}
+
+.c-employee-hours-reports .report-header .arrow{
+    margin-right: 35px;
+}
+.c-employee-hours-reports .report-header .arrow img{
+    width: 14.1px;
+    height: 14.1px;
+    transform: rotate(270deg);
+    vertical-align: top;
+}
+
+.c-employee-hours-reports .report-header .arrow .spin-up{
+    animation: spin-up 0.25s linear forwards;
+}
+.c-employee-hours-reports .report-header .arrow .spin-down{
+    animation: spin-down 0.25s linear forwards;
+}
+
+@keyframes spin-up{
+    from {
+        transform: rotate(270deg);
+    }
+    to {
+        transform: rotate(90deg);
+    }
+}
+@keyframes spin-down{
+    from {
+        transform: rotate(90deg);
+    }
+    to {
+        transform: rotate(270deg);
+    }
 }
 
 .c-employee-hours-reports .report-body .mass-buttons{
