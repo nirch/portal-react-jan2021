@@ -1,0 +1,69 @@
+.p-login
+{
+        
+    color:white;
+    background-color: #1b166e;
+    height: 100vh;
+}
+.p-login ::placeholder 
+ { /* Most modern browsers support this now. */
+    color:    white;
+ }
+
+.f-login
+{
+    color:white;
+    background-color: #1b166e;
+    border-radius: 50px;
+    height:50px;
+    font-size:25px;
+    line-height: 25px;
+    text-align: center;
+}
+.f-login:focus
+{
+    color:white;
+    background-color: #1b166e;
+}
+.login-logo
+{
+    display: block;
+    margin: auto;
+    padding-top:38px;
+}
+.button-login
+{
+    color:#1b166e;
+    background-color: white;
+    border-radius:50px;
+    width:312.2px;
+    height: 50px;
+    font-size:30px;
+    line-height: 11px;
+    border:1px;
+    margin-bottom:22px;
+   
+}
+.Login-button-wrapper
+{
+   /* margin-top: 203px;*/
+   margin-top: 16vh;
+    display: flex;
+    justify-content: center;
+}
+.login-Fields-wrapper
+{
+   /* margin-top:172px; */
+  margin-top: 16.2vh;
+}
+.login-overall-wrapper
+{
+    position: relative;
+}
+.alert-wrapper
+{
+    position: absolute;
+    bottom:0vh;
+    width:100%;
+
+}
