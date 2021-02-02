@@ -1,0 +1,65 @@
+.portal_alert
+{
+ 
+  background-color: white;
+  height:100px;
+  position: absolute;
+  bottom:-3vh;
+  width:100%;
+  animation-duration: 1s;
+  animation-delay: 0s;
+  animation-name: portal-alert-slide-up;
+}
+.portal_alert .alert_error_color
+{
+    color:#ffa1a1;
+}
+
+.portal_alert .alert_info_color 
+{
+    color:rgb(43, 43, 199);
+}
+
+.portal_alert .alert_message
+{
+    font-size:20px;
+    line-height: 18px;
+    margin:8px;
+    margin-right: 28px;
+    margin-top: 12px;
+}
+.portal_alert .alert-line-wrap
+{
+    display: inline-flex;
+    margin-top:33px;
+    margin-right: 16px;
+   
+}
+.portal_alert .alert-line-wrap>img 
+{
+    height:34px;
+    width: 39px;
+}
+.portal_alert .alert-close-button
+{
+    position:absolute;
+    top:1.8px;
+    left:23.2px;
+    background-color: white;
+    color:#5d5d5d;
+    border:none;
+    font-size:30.2px;
+}
+
+@keyframes portal-alert-slide-up 
+{
+    from 
+    {
+        bottom:-10vh; 
+    }
+
+    to 
+    {
+     buttom:-3vh;
+    }
+}
