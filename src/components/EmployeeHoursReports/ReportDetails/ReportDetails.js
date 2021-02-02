@@ -1,6 +1,7 @@
 import './ReportDetails.css';
 
 import React from 'react';
+import calculateHours from '../../../shared/calculateHours';
 
 const ReportDetails = (props) => {
     const {status, checked, report, reportingPerimeter} = props;
@@ -17,6 +18,8 @@ const ReportDetails = (props) => {
     const style = {
         backgroundColor:bgColor
     }
+
+    const hours = calculateHours(report.starthour, report.finishhour).timeFormat;
 
     const project = reportingPerimeter[report.projectid];
     const course = project.courses.find(course => course.courseid === report.courseid);
@@ -41,7 +44,7 @@ const ReportDetails = (props) => {
                 </div>
                 <div className='hours'>
                     <div className='title'>סה"כ שעות: </div>
-                    <div className='data'>9</div>
+                    <div className='data'>{hours}</div>
                 </div>
                 <div className='actions'>
                     <div className='actions-dots'>...</div>
