@@ -19,15 +19,16 @@ const HoursApprovePage = (props) => {
             const year = today.getFullYear();
             
             const res = await server(activeUser, {month, year}, 'GetAllReporters');
-            console.log(res);
             setData(res.data);
         }
         getReports();
     },[])
 
-    const employeesView = data && data.map((employee) => 
-        <EmployeeHoursReports data={employee}/>
-    );
+    const employeesView = data && data.map((employee) => {
+        if (employee.reports.length > 0) {
+        return <EmployeeHoursReports data={employee} key={employee.userid}/>
+        }
+    });
 
 
     if (!activeUser) {
