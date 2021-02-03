@@ -1,0 +1,25 @@
+.p-courses{
+    position: relative;
+}
+
+.p-courses .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%; 
+    background-color: white;
+  }
+
+.p-courses .search {
+    margin: 0 0.75rem;
+}
+
+.p-courses .content {
+    padding-bottom: 76px;
+}
+
+.p-courses .spinner {
+    width: 3rem;
+    height: 3rem;
+    margin-top: 200px;
+}
