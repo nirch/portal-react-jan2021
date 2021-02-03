@@ -24,9 +24,15 @@ const HoursApprovePage = (props) => {
         getReports();
     },[])
 
-    const employeesView = data && data.map((employee) => {
+    function onDataUpdate(empIndex, reports) {
+        const newData = [...data];
+        newData[empIndex].reports = reports;
+        setData(newData);
+    }
+
+    const employeesView = data && data.map((employee, index) => {
         if (employee.reports.length > 0) {
-        return <EmployeeHoursReports data={employee} key={employee.userid}/>
+        return <EmployeeHoursReports data={employee} key={employee.userid} onDataUpdate={onDataUpdate} index={index}/>
         }
     });
 

@@ -1,21 +1,23 @@
 import './EmployeeHoursReports.css'
-import React, { useMemo, useState } from 'react';
+import React, { useContext, useMemo, useState } from 'react';
 import { Accordion } from 'react-bootstrap';
 import CustomToggle from './CustomToggle';
 import ReportingButtons from './ReportingButtons/ReportingButtons';
 import ReportDetails from './ReportDetails/ReportDetails';
 import arrow from '../../assets/images/arrow_left.png';
 import calculateHours from '../../shared/calculateHours';
+import server from '../../shared/server';
+import ActiveUserContext from '../../shared/activeUserContext';
 
-// array of reports
-// calculate the hours
 
-const EmployeeHoursReports = ({data}) => {
+const EmployeeHoursReports = ({data, onDataUpdate, index}) => {
     const {firstname, lastname, reports, reportingPerimeter } = data;
     const [isAllChecked, setIsAllChecked] = useState(false);
     const [isOpen, setIsOpen] = useState('');
+    const [checkedReports, setCheckedReports] = useState([]);
+    const activeUser = useContext(ActiveUserContext);
+    
     let approved = 0, unapproved = 0, rejected = 0;
-
     reports.map(report => {
         const hours = calculateHours(report.starthour, report.finishhour).numberFormat;
         if (report.approval === '-1') {
@@ -27,10 +29,44 @@ const EmployeeHoursReports = ({data}) => {
         }
     });
 
-    function onStatusSelect(status){
-        console.log(status);
+    function onReportSelectChange(reportId) {
+        const newArray = [...checkedReports];
+        const index = newArray.indexOf(reportId);
         
-        // sending update request to the server
+        if (index !== -1) {
+            newArray.splice(index, 1);
+        } else {
+            newArray.push(reportId);
+        }
+        
+        setCheckedReports(newArray);
+    }
+    
+    function onAllReportsSelectChange(){
+        const newArray = reports.map(report => report.reportid);
+        isAllChecked ? setCheckedReports([]) : setCheckedReports(newArray);
+        setIsAllChecked(!isAllChecked);
+
+    }
+
+    async function handleReport(status, reportids){
+        
+        const checkdate2 = true;
+
+        const res = await server(activeUser, {reportids, checkdate2, status}, 'SetReportApproval');
+        if (res.status === 200){
+            const newReports = [...reports]
+            newReports.map(report => {
+                if (reportids.indexOf(report.reportid) !== -1) {
+                    report.approval = status.toString();
+                }
+            });
+            onDataUpdate(index, newReports);
+        }
+    }
+
+    function onStatusSelect(status, reportId){
+        handleReport(status, [reportId]);
     }
 
     const arrowAnimationStyle = useMemo(() => {
@@ -53,10 +89,11 @@ const EmployeeHoursReports = ({data}) => {
         return (aDate - bDate);
     });
 
-    const reportsView = reports && reports.map(report => 
+    const reportsView = reports && reports.map((report, index) => 
         <div key={report.reportid}>
-            <ReportingButtons status={report.approval} onStatusSelect={onStatusSelect}/>
-            <ReportDetails status={report.approval} checked={false} report={report} reportingPerimeter={reportingPerimeter}/>
+            <ReportingButtons status={report.approval} onStatusSelect={onStatusSelect} id={report.reportid}/>
+            <ReportDetails status={report.approval} checked={checkedReports.indexOf(report.reportid) !== -1 ? true : false} 
+            report={report} reportingPerimeter={reportingPerimeter} onReportSelectChange={() => {onReportSelectChange(report.reportid)}}/>
         </div>
     );
 
@@ -75,17 +112,17 @@ const EmployeeHoursReports = ({data}) => {
             <Accordion.Collapse eventKey={data.userid}>
                 <div className='report-body'>
                     <div className='mass-buttons'>
-                        <div className='check-all radio-group' onClick={() => setIsAllChecked(!isAllChecked)}>
+                        <div className='check-all radio-group' onClick={onAllReportsSelectChange}>
                             <div className='radio'>
                                 <div className={isAllChecked ? 'radio-fill' : ''}></div>
                             </div>
                             <div className='radio-text'>סמן הכל</div>
                         </div>
-                        <div className='mass-approve radio-group'>
+                        <div className='mass-approve radio-group' onClick={() => {handleReport(1, checkedReports)}}>
                             <div className='radio'></div>
                             <div className='radio-text'>אישור מסומנים</div>
                         </div>
-                        <div className='mass-reject radio-group'>
+                        <div className='mass-reject radio-group' onClick={() => {handleReport(-1, checkedReports)}}>
                             <div className='radio'></div>
                             <div className='radio-text'>דחיית מסומנים</div>
                         </div>

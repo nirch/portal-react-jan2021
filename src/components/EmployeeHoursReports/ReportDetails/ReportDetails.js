@@ -4,7 +4,7 @@ import React from 'react';
 import calculateHours from '../../../shared/calculateHours';
 
 const ReportDetails = (props) => {
-    const {status, checked, report, reportingPerimeter} = props;
+    const {status, checked, report, reportingPerimeter, onReportSelectChange} = props;
 
     let bgColor;
     if (status === '-1'){
@@ -28,7 +28,7 @@ const ReportDetails = (props) => {
     return (
         <div className='c-report-details' style={style}>
             <div className='headline'>
-                <div className='checkbox'>
+                <div className='checkbox' onClick={onReportSelectChange}>
                     <div className='checkbox-Square'>
                         <div className={checked ? 'checkbox-fill' : ''}>
                             <div className='checkmark'>
