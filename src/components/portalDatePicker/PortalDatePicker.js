@@ -8,6 +8,8 @@ function PortalDatePicker(props) {
 
     const Months=["ינואר","פברואר","מרץ","אפריל","מאי","יוני","יולי","אוגוסט","ספטמבר","אוקטובר","נובמבר","דצמבר"];
 
+    const stepsLimitDefault = 6;
+
     function handleClick(step) {
         let newDate = date ? new Date(date.year + "-" + date.month + "-" + date.day) : new Date();
         if (onlyMonth) {
@@ -29,7 +31,7 @@ function PortalDatePicker(props) {
     const isDisabled = (nextStep) => {
         if (onlyMonth) {
 
-           return ((Math.abs(stepsCount + nextStep)) > stepsLimit);
+           return ((Math.abs(stepsCount + nextStep)) > (stepsLimit ? stepsLimit : stepsLimitDefault));
         }
 
         return false;
