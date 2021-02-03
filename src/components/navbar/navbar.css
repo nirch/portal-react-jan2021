@@ -122,6 +122,10 @@ margin-bottom: 15%;
   
     /* max-height: 10.9%; */
 }
+.c-navbar .name-wrap{
+    display:flex;
+    align-items: stretch;
+}
 
 
 .c-navbar .profile-image img{
@@ -282,4 +286,15 @@ margin: 0
    margin:3% 0 3% 8%;
    width: 2.5vh;
    object-fit: cover;
-    }
+}
+
+.c-navbar .users-tab-users .usersTab-closed{
+    display: none;
+
+}
+
+.c-navbar .users-tab-users .usersTab-open{
+    display: block;
+
+}
+
