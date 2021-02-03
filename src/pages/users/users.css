@@ -1,0 +1,14 @@
+.p-users{
+    padding-bottom: 75px;
+}
+.p-user_search{
+margin:  25px 12px;
+}
+.p-users-buttons{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    z-index: 1;
+    background-color: #ffffff;
+}
