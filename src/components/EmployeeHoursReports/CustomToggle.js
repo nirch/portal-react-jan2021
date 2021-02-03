@@ -1,11 +1,10 @@
 
-import React from 'react';
 import { useAccordionToggle } from 'react-bootstrap';
 
-const CustomToggle = ({ children, eventKey }) => {
+const CustomToggle = ({ children, eventKey, toggleClicked }) => {
     
     const decoratedOnClick = useAccordionToggle(eventKey, () => {
-        console.log('totally custom!');
+        toggleClicked();
     });
     
     return (
