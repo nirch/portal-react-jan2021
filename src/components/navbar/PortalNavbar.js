@@ -7,6 +7,7 @@ import courseTab from '../../assets/images/courseTab.png';
 import hoursReport from '../../assets/images/hoursReport.png';
 import hoursAprove from '../../assets/images/hoursAprove.png';
 import logout from '../../assets/images/logout.png';
+import arrow_down from '../../assets/images/arrow_down.png';
 
 import './navbar.css'
 
@@ -41,7 +42,7 @@ const PortalNavbar = (props) => {
 				</div>
 				<Row className="profile-preview">
 					<Col className="profile-image">
-					<img  ng-click="profileClick()" src={profileIcon}></img>
+					<img   src={profileIcon}></img>
 					</Col>
 					<Col className="name-wrap">
 							<span className="user-name">
@@ -54,7 +55,7 @@ const PortalNavbar = (props) => {
 				<div className="menu-information"  ng-click="goToSettingPage()">
 					<Row className="courses-tab">
                             <Col className="courses-tab-image">
-                                <img  ng-click="profileClick()" src={courseTab}></img>
+                                <img   src={courseTab}></img>
                             </Col>
                             <Col className="courses-tab-courses">
                                 <a href="#/courses">
@@ -66,12 +67,32 @@ const PortalNavbar = (props) => {
 					<div className="menu-information" ng-click="goToCoursesPage()">
 						<Row className="users-tab">
                             <Col className="users-tab-image">
-                                <img  ng-click="profileClick()" src={usersTab}></img>
+                                <img src={usersTab}></img>
                             </Col>
                             <Col className="users-tab-users">
-                                <a href="#/users">
-                                    משתמשים
-                                </a>                            
+									<Row>
+										<a href="#/users">
+											משתמשים
+										</a>
+										<img src={arrow_down}></img>
+									</Row>
+									<div>
+										<Row>
+											<a href="#/users">
+												עובדים
+											</a>
+										</Row>
+										<Row>
+											<a href="#/users">
+												חניכים
+											</a>
+										</Row>
+										<Row>
+											<a href="#/users">
+												משתמשים חדשים
+											</a>
+										</Row>
+									</div>
                             </Col>
                         </Row>
 					</div>
@@ -79,7 +100,7 @@ const PortalNavbar = (props) => {
 					<div className="menu-information" ng-click="logout()">
 					<Row className="hoursReport-tab">
                             <Col className="hoursReport-tab-image">
-                                <img  ng-click="profileClick()" src={hoursReport}></img>
+                                <img  src={hoursReport}></img>
                             </Col>
                             <Col className="hoursReport-tab-hoursReport">
                                 <a href="#/hours-report">
