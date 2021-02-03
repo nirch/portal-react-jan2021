@@ -47,6 +47,12 @@ const EmployeeHoursReports = ({data}) => {
         setIsOpen(!isOpen);
     }
 
+    reports && reports.sort((a,b) => {
+        const aDate = a.date.split('/')[0];
+        const bDate = b.date.split('/')[0];
+        return (aDate - bDate);
+    });
+
     const reportsView = reports && reports.map(report => 
         <div key={report.reportid}>
             <ReportingButtons status={report.approval} onStatusSelect={onStatusSelect}/>
