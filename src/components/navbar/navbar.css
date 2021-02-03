@@ -1,8 +1,14 @@
+.c-navbar .hamburger > div{
+    width: 25px;
+    height: 4px;
+    background-color:#5d5d5d;
+    margin-bottom: 3px ;
+}
+
+
+
 .c-navbar .hamburger{
-    width: 35px;
-    height: 5px;
-    background-color: black;
-    margin: 6px 0;
+    margin: 17px 19px 0 0;
 }
 
 .c-navbar .sidebar-wrap {
@@ -52,20 +58,27 @@
 	width: 100%;
 }
 .c-navbar .sidebar-header {
-    height: 19.5%;
+    height: 22vh;
     width: 100%;
     background-color:#1b166e;
 
 	/* text-align:  center; */
-	padding: 5%;
+	/* padding: 5%; */
 	box-sizing:  border-box;
 	position:  relative;
 }
 
+.c-navbar .sidebar-header-x,.sidebar-header-logo  {
+    width: 100%;
+    margin:0;
+}
 .c-navbar .sidebar-header span  {
-    height: 15.3px;
-    width: 15.8px;
-    margin-right:auto ;
+    margin-right: 85%;
+    color:white;
+    font-size:36px;
+}
+.c-navbar .sidebar-header img  {
+margin-bottom: 15%;
 }
 .c-navbar .sidebar-header img  {
     height: 50%;
@@ -73,23 +86,48 @@
 }
 .c-navbar .appleseeds-logo {
 	width: 85%;
-	position: absolute;
+	/* position: absolute; */
 	left: 0;
 	right: 0;
 	top: 0;
 	bottom:  0;
 	margin: auto;
 }
-.c-navbar .profile-preview{
-	height: calc(7vh + 4px);
+.c-navbar .profile-preview,.users-tab,.courses-tab,.hoursReport-tab,.hoursAprove-tab,.logout-tab {
+    max-height: 10.9%;
+    width: 100%;
+    margin: 0;
 	/* padding: 1vh; */
 	/* border-bottom: 1px solid #ccc; */
 }
-.c-navbar .profile-image{
-	width: 35.4px;
-    height:35.4px;
-    object-fit:cover;
-    margin: 24px 16.6px 10.1px 0 ;
+
+.c-navbar .profile-preview{
+    border-bottom: solid rgb(190, 182, 182) 1px;
+    height: 10vh;
+}
+
+
+
+/*add all right colums here */
+.c-navbar .profile-image,.users-tab-image,.courses-tab-image,.hoursReport-tab-image,.hoursAprove-tab-image,.logout-tab-image {
+    max-width: 13.2%;
+    margin-right: 4.6% ;
+    padding: 0;
+    /* max-height: 10.9%; */
+}
+/*add all left colums here */
+.c-navbar .name-wrap,.users-tab-users, .courses-tab-courses,.hoursReport-tab-hoursReport,.hoursAprove-tab-hoursAprove,.logout-tab-logout {
+    padding: 0;
+    margin-right: 3%;
+    display: flex;
+    align-items: stretch;
+    /* max-height: 10.9%; */
+}
+
+
+.c-navbar .profile-image img{
+
+    /* margin: 24px 16.6px 10.1px 0 ; */
     display: inline-block;
     vertical-align: middle;
     /* border-radius: 50%;
@@ -108,28 +146,32 @@
 	position:relative;
 	z-index: 2;
 }
-.c-navbar .sidebar-open .profile-image{
-	transform: Scale(1, 1);
+.c-navbar .sidebar-open .profile-image img{
+    width: 5.8vh;
+    object-fit:cover;
+    overflow:  auto;
+    margin: 35% 0 5% 0;
+    transform: Scale(1, 1);
 	-moz-transform: Scale(1, 1);
 	-ms-transform: Scale(1, 1);
 	-webkit-transform: Scale(1, 1);
     -o-transform: Scale(1, 1);
-    margin: 3.8% 6.2% 1.6% 0 ;
+   
 }
 
 
 .c-navbar .sidebar-open .user-name{
-    font-size: 24px;
+    font-size:6.5vw;
     text-align: right;
-    margin: 5% 4% 2% 0 ;
+    margin: 5% 0 5% 0 ;
 }
 .c-navbar .sidebar-options .menu-information{
 	transform: translateX(40vw);
-	height: 6vh;
+	/* height: 6vh; */
 	font-weight: bold;
 	color: #2E598B;
-	padding-right: 2vh;
-	padding-top: 4vh;
+	/* padding-right: 2vh; */
+	/* padding-top: 4vh; */
 	transition: transform 0.5s ease;
 	-moz-transition: -moz-transform 0.5s ease;
 	-ms-transition: -ms-transform 0.5s ease;
@@ -168,9 +210,8 @@
 	transform: translateX(0);
 }
 .c-navbar .name-wrap{
-	display: inline-block;
+    /* display: inline-block; */
 	opacity:0;
-	margin-right:-2.5em;
 	transform: Scale(0, 0);
 	-moz-transform: Scale(0, 0);
 	-ms-transform: Scale(0, 0);
@@ -187,10 +228,64 @@
 }
 .c-navbar .sidebar-open .name-wrap{
 	opacity: 1;
-	margin-right: 1vw;
+	/* margin-right: 1vw; */
 	transform: Scale(1, 1);
 	-moz-transform: Scale(1, 1);
 	-ms-transform: Scale(1, 1);
 	-webkit-transform: Scale(1, 1);
 	-o-transform: Scale(1, 1);
+}
+/* 
+.c-navbar .users-tab a{
+
+} */
+ 
+/* .c-navbar .profile-image,.users-tab-users {
+    padding: 0;
+    margin-right: 2%;
+}  */
+
+.c-navbar .menu-information{
+    max-height: 8%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+	/* padding: 1vh; */
+	/* border-bottom: 1px solid #ccc; */
+}
+
+.c-navbar .menu-information .users-tab,.courses-tab,.hoursReport-tab,.hoursAprove-tab,.logout-tab {
+    border-top: solid rgb(196, 192, 192) 1px;
+}
+.c-navbar .menu-information img{
+    margin:29% 0% 23% 0;
+    width: 4.5vh;
+    object-fit: cover;
+}
+
+/* .c-navbar  */
+
+.c-navbar .menu-information  img{
+    margin:29% 14% 23% 0;
+    width: 2.5vh;
+}
+/* .c-navbar .menu-information .hoursReport-tab-image img{
+    margin:29% 14% 23% 0;
+    width: 2.5vh;
+}
+.c-navbar .menu-information .hoursAprove-tab-image img{
+    margin:29% 14% 23% 0;
+    width: 2.5vh;
+}
+.c-navbar .menu-information .logout-tab-image img{
+    margin:29% 14% 23% 0;
+    width: 2.5vh;
+} */
+
+.c-navbar .menu-information a{
+    margin: 3% 0 5% 0;
+    color: #15457d;
+    font-size: 4.5vw;
+    /* margin: 0; */
+    /* margin:29% 30% 23% 0; */
 }
