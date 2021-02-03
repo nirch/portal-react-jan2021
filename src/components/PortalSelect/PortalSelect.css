@@ -1,0 +1,42 @@
+.portal-select-all
+{
+    font-size:20px;
+    color:#5d5d5d;
+    background-color: white;
+    padding:10px;
+}
+.portal-select-all .portal-select-title
+{
+    font-size:20px;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+.portal-select-all .portal-select-selector
+{
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    appearance:none;
+    width:100%;
+    color:#5d5d5d;
+    font-size:20px;
+    border-style: none;
+    
+}
+.portal-select-all .portal-select-selector:focus
+{
+    border-style: none;
+    outline: 0;
+}
+
+.portal-select-all .portal-select-selector-wrapper
+{
+    position: relative;
+}
+.portal-select-all .portal-select-charV
+{
+    position: absolute;
+    left:10px;
+    font-weight: bolder;
+    pointer-events: none;
+    transform: rotate(90deg);
+}
