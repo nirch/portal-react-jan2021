@@ -29,6 +29,12 @@ const EmployeeHoursReports = ({data, handleReporting, openEmployee, onEmployeeSe
         const newArray = [...checkedReports];
         newArray.includes(reportId) ? newArray.splice(newArray.indexOf(reportId), 1) : newArray.push(reportId);
         setCheckedReports(newArray);
+
+        if (newArray.length === reports.length) {
+            setIsAllChecked(true);
+        } else {
+            isAllChecked && setIsAllChecked(false);
+        }
     }
     
     function onAllReportsSelectChange(){
