@@ -14,7 +14,7 @@ const EmployeeHoursReports = ({data, handleReporting, openEmployee, onEmployeeSe
     const [checkedReports, setCheckedReports] = useState([]);
     
     let approved = 0, unapproved = 0, rejected = 0;
-    reports.map(report => {
+    reports.forEach(report => {
         const hours = calculateHours(report.starthour, report.finishhour).numberFormat;
         if (report.approval === '-1') {
             rejected += hours
