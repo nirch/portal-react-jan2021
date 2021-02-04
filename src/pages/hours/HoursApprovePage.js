@@ -6,18 +6,19 @@ import { Redirect } from 'react-router-dom'
 import EmployeeHoursReports from '../../components/EmployeeHoursReports/EmployeeHoursReports';
 import { Accordion } from 'react-bootstrap';
 import server from '../../shared/server';
+import PortalDatePicker from '../../components/portalDatePicker/PortalDatePicker';
 
 const HoursApprovePage = (props) => {
     const { handleLogout } = props;
     const activeUser = useContext(ActiveUserContext);
     const [data, setData] = useState('');
     const [openEmployee, setOpenEmployee] = useState('');
+    const [date, setDate] = useState(new Date());
 
     useEffect(() => {
         async function getReports(){
-            const today = new Date();
-            const month = today.getMonth()+1;
-            const year = today.getFullYear();
+            const month = date.getMonth()+1;
+            const year = date.getFullYear();
             
             const res = await server(activeUser, {month, year}, 'GetAllReporters');
             const dataObj = res.data.reduce((employee, item) => {
@@ -29,7 +30,7 @@ const HoursApprovePage = (props) => {
                 setData(dataObj);
             }
             getReports();
-    },[])
+    },[date])
     
     async function handleReporting(empId, status, reportids){
         
@@ -49,6 +50,11 @@ const HoursApprovePage = (props) => {
         }
     }
 
+    function onDateChange (dateObj) {
+        const {day, month, year} = dateObj;
+        setDate(new Date(year, month-1, day));
+    }
+
     function onEmployeeSelect(empId){
         openEmployee !== empId ? setOpenEmployee(empId) : setOpenEmployee('');
     }
@@ -60,6 +66,7 @@ const HoursApprovePage = (props) => {
         }
     });
 
+    const [month, day, year] = date.toLocaleDateString("en-US").split("/");
 
     if (!activeUser) {
         return <Redirect to='/' />
@@ -69,6 +76,7 @@ const HoursApprovePage = (props) => {
         <div className="p-hours-approve">
             <PortalNavbar handleLogout={handleLogout}/>
             <h1>אישור שעות</h1>
+            <PortalDatePicker onlyMonth={true} handleDateSelection={onDateChange} date={{year, month, day}}/>
             <Accordion>
                 {employeesView}
             </Accordion>
