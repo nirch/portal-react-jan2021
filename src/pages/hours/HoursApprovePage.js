@@ -11,6 +11,7 @@ const HoursApprovePage = (props) => {
     const { handleLogout } = props;
     const activeUser = useContext(ActiveUserContext);
     const [data, setData] = useState('');
+    const [openEmployee, setOpenEmployee] = useState('');
 
     useEffect(() => {
         async function getReports(){
@@ -30,9 +31,14 @@ const HoursApprovePage = (props) => {
         setData(newData);
     }
 
+    function onEmployeeSelect(empId){
+        openEmployee !== empId ? setOpenEmployee(empId) : setOpenEmployee('');
+    }
+
     const employeesView = data && data.map((employee, index) => {
         if (employee.reports.length > 0) {
-        return <EmployeeHoursReports data={employee} key={employee.userid} onDataUpdate={onDataUpdate} index={index}/>
+        return <EmployeeHoursReports data={employee} key={employee.userid} onDataUpdate={onDataUpdate} index={index} 
+            openEmployee={openEmployee === employee.userid} onEmployeeSelect={() => onEmployeeSelect(employee.userid)}/>
         }
     });
 

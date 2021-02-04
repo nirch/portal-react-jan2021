@@ -1,7 +1,6 @@
 import './EmployeeHoursReports.css'
-import React, { useContext, useMemo, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Accordion } from 'react-bootstrap';
-import CustomToggle from './CustomToggle';
 import ReportingButtons from './ReportingButtons/ReportingButtons';
 import ReportDetails from './ReportDetails/ReportDetails';
 import arrow from '../../assets/images/arrow_left.png';
@@ -10,7 +9,7 @@ import server from '../../shared/server';
 import ActiveUserContext from '../../shared/activeUserContext';
 
 
-const EmployeeHoursReports = ({data, onDataUpdate, index}) => {
+const EmployeeHoursReports = ({data, onDataUpdate, index, openEmployee, onEmployeeSelect}) => {
     const {firstname, lastname, reports, reportingPerimeter } = data;
     const [isAllChecked, setIsAllChecked] = useState(false);
     const [isOpen, setIsOpen] = useState('');
@@ -69,18 +68,21 @@ const EmployeeHoursReports = ({data, onDataUpdate, index}) => {
         handleReport(status, [reportId]);
     }
 
-    const arrowAnimationStyle = useMemo(() => {
-        if (isOpen === '') {
-            return ''
-        } else if (isOpen) {
-            return 'spin-up'
-        } else {
-            return 'spin-down'
-        }
-    },[isOpen]);
-
-    function toggleClicked(){
+    function handleEmployeeSelect() {
+        onEmployeeSelect();
         setIsOpen(!isOpen);
+    }
+
+    let arrowAnimationStyle;
+    if (isOpen === '' && !openEmployee) {
+        arrowAnimationStyle = '';
+    } else if (isOpen && openEmployee) {
+        arrowAnimationStyle = 'spin-up';
+    } else if (isOpen && !openEmployee) {
+        setIsOpen(false);
+        arrowAnimationStyle = 'spin-down';
+    } else if (!isOpen && !openEmployee) {
+        arrowAnimationStyle = 'spin-down';
     }
 
     reports && reports.sort((a,b) => {
@@ -99,7 +101,7 @@ const EmployeeHoursReports = ({data, onDataUpdate, index}) => {
 
     return (
         <div className='c-employee-hours-reports'>
-            <CustomToggle eventKey={data.userid} toggleClicked={toggleClicked}>
+            <Accordion.Toggle eventKey={data.userid} className='report-header' onClick={handleEmployeeSelect}>
                 <div className='employee-name'>{firstname} {lastname}</div>
                 <div className='total-hours'>
                     <div className='unapproved'>{unapproved}</div>
@@ -108,7 +110,7 @@ const EmployeeHoursReports = ({data, onDataUpdate, index}) => {
                     <div className='total'>{unapproved+approved+rejected}</div>
                 </div>
                 <div className='arrow'><img className={arrowAnimationStyle} src={arrow} alt='arrow'/></div>
-            </CustomToggle>
+            </Accordion.Toggle>
             <Accordion.Collapse eventKey={data.userid}>
                 <div className='report-body'>
                     <div className='mass-buttons'>
