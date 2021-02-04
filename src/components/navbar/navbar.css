@@ -119,9 +119,12 @@ margin-bottom: 15%;
 .c-navbar .name-wrap,.users-tab-users, .courses-tab-courses,.hoursReport-tab-hoursReport,.hoursAprove-tab-hoursAprove,.logout-tab-logout {
     padding: 0;
     margin-right: 3%;
-    display: flex;
-    align-items: stretch;
+  
     /* max-height: 10.9%; */
+}
+.c-navbar .name-wrap{
+    display:flex;
+    align-items: stretch;
 }
 
 
@@ -235,15 +238,7 @@ margin-bottom: 15%;
 	-webkit-transform: Scale(1, 1);
 	-o-transform: Scale(1, 1);
 }
-/* 
-.c-navbar .users-tab a{
 
-} */
- 
-/* .c-navbar .profile-image,.users-tab-users {
-    padding: 0;
-    margin-right: 2%;
-}  */
 
 .c-navbar .menu-information{
     max-height: 8%;
@@ -257,35 +252,49 @@ margin-bottom: 15%;
 .c-navbar .menu-information .users-tab,.courses-tab,.hoursReport-tab,.hoursAprove-tab,.logout-tab {
     border-top: solid rgb(196, 192, 192) 1px;
 }
-.c-navbar .menu-information img{
-    margin:29% 0% 23% 0;
-    width: 4.5vh;
-    object-fit: cover;
-}
-
-/* .c-navbar  */
 
 .c-navbar .menu-information  img{
     margin:29% 14% 23% 0;
     width: 2.5vh;
+    object-fit: cover;
 }
-/* .c-navbar .menu-information .hoursReport-tab-image img{
-    margin:29% 14% 23% 0;
-    width: 2.5vh;
+.c-navbar .menu-information .users-tab-image img{
+    margin:29% 0% 23% 0;
+    width: 4.5vh;
 }
-.c-navbar .menu-information .hoursAprove-tab-image img{
-    margin:29% 14% 23% 0;
-    width: 2.5vh;
-}
-.c-navbar .menu-information .logout-tab-image img{
-    margin:29% 14% 23% 0;
-    width: 2.5vh;
-} */
+
 
 .c-navbar .menu-information a{
     margin: 3% 0 5% 0;
     color: #15457d;
     font-size: 4.5vw;
-    /* margin: 0; */
-    /* margin:29% 30% 23% 0; */
+  
 }
+
+/* userstab open-close*/
+
+.c-navbar .users-tab-users .row {
+width: 100%;
+display: flex;
+align-items: center;
+justify-content: space-between ;
+margin: 0
+}
+
+.c-navbar .users-tab-users img{
+    width: 100%;
+   margin:3% 0 3% 8%;
+   width: 2.5vh;
+   object-fit: cover;
+}
+
+.c-navbar .users-tab-users .usersTab-closed{
+    display: none;
+
+}
+
+.c-navbar .users-tab-users .usersTab-open{
+    display: block;
+
+}
+

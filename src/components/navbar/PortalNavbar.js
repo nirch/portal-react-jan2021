@@ -7,18 +7,31 @@ import courseTab from '../../assets/images/courseTab.png';
 import hoursReport from '../../assets/images/hoursReport.png';
 import hoursAprove from '../../assets/images/hoursAprove.png';
 import logout from '../../assets/images/logout.png';
+import arrow_down from '../../assets/images/arrow_down.png';
+import arrow_up from '../../assets/images/arrow_up.png';
 
 import './navbar.css'
 
 const PortalNavbar = (props) => {
     const { handleLogout } = props;
-    const [sidebarOpen, setSidebarOpen] = useState(false);
+	const [sidebarOpen, setSidebarOpen] = useState(false);
+	const [usersTabOpen, setUsersTabOpen] = useState(false);
+	
    
     let sidebar= "";
     if (sidebarOpen){
         sidebar= "sidebar-open";
     }
 
+	function toggleUsersTab(){
+		const currentState= usersTabOpen;
+		setUsersTabOpen(!currentState);
+	}
+
+	let usersTabToggle= "usersTab-closed";
+    if (usersTabOpen){
+        usersTabToggle= "usersTab-open";
+	}
 
     return (
 <div className="c-navbar">
@@ -41,7 +54,7 @@ const PortalNavbar = (props) => {
 				</div>
 				<Row className="profile-preview">
 					<Col className="profile-image">
-					<img  ng-click="profileClick()" src={profileIcon}></img>
+					<img   src={profileIcon}></img>
 					</Col>
 					<Col className="name-wrap">
 							<span className="user-name">
@@ -54,7 +67,7 @@ const PortalNavbar = (props) => {
 				<div className="menu-information"  ng-click="goToSettingPage()">
 					<Row className="courses-tab">
                             <Col className="courses-tab-image">
-                                <img  ng-click="profileClick()" src={courseTab}></img>
+                                <img   src={courseTab}></img>
                             </Col>
                             <Col className="courses-tab-courses">
                                 <a href="#/courses">
@@ -66,42 +79,63 @@ const PortalNavbar = (props) => {
 					<div className="menu-information" ng-click="goToCoursesPage()">
 						<Row className="users-tab">
                             <Col className="users-tab-image">
-                                <img  ng-click="profileClick()" src={usersTab}></img>
+                                <img src={usersTab}></img>
                             </Col>
                             <Col className="users-tab-users">
-                                <a href="#/users">
-                                    משתמשים
-                                </a>                            
+									<Row>
+										<a href="#/users">
+											משתמשים
+										</a>
+										
+										{usersTabOpen? <img src={arrow_up} onClick={toggleUsersTab}></img> : <img src={arrow_down} onClick={toggleUsersTab}></img>}
+									</Row>
+									<div className={usersTabToggle}>
+										<Row>
+											<a href="#/users?type=employee" onClick={()=> setSidebarOpen(false) }>
+												עובדים
+											</a>
+										</Row>
+										<Row>
+											<a href="#/users?type=students" onClick={()=> setSidebarOpen(false) }>
+												חניכים
+											</a>
+										</Row>
+										<Row>
+											<a href="#/users?type=new" onClick={()=> setSidebarOpen(false) }>
+												משתמשים חדשים
+											</a>
+										</Row>
+									</div>
                             </Col>
                         </Row>
 					</div>
 				
-					<div className="menu-information" ng-click="logout()">
-					<Row className="hoursReport-tab">
-                            <Col className="hoursReport-tab-image">
-                                <img  ng-click="profileClick()" src={hoursReport}></img>
-                            </Col>
-                            <Col className="hoursReport-tab-hoursReport">
-                                <a href="#/hours-report">
-                                    דיווח שעות
-                                </a>                            
-                            </Col>
-                        </Row>
+					<div className="menu-information">
+						<Row className="hoursReport-tab">
+								<Col className="hoursReport-tab-image">
+									<img  src={hoursReport}></img>
+								</Col>
+								<Col className="hoursReport-tab-hoursReport">
+									<a href="#/hours-report">
+										דיווח שעות
+									</a>                            
+								</Col>
+							</Row>
 					</div>
-					<div className="menu-information" ng-click="logout()">
-					<Row className="hoursAprove-tab">
-                            <Col className="hoursAprove-tab-image">
-                                <img  ng-click="profileClick()" src={hoursAprove}></img>
-                            </Col>
-                            <Col className="hoursAprove-tab-hoursAprove">
-                                <a href="#/hours-approve">
-                                    אישור שעות
-                                </a>                            
-                            </Col>
-                        </Row>
+					<div className="menu-information">
+						<Row className="hoursAprove-tab">
+								<Col className="hoursAprove-tab-image">
+									<img  ng-click="profileClick()" src={hoursAprove}></img>
+								</Col>
+								<Col className="hoursAprove-tab-hoursAprove">
+									<a href="#/hours-approve">
+										אישור שעות
+									</a>                            
+								</Col>
+							</Row>
 					</div>
-					<div className="menu-information" ng-click="logout()">
-					<Row className="logout-tab">
+					<div className="menu-information">
+						<Row className="logout-tab">
                             <Col className="logout-tab-image">
                                 <img  ng-click="profileClick()" src={logout}></img>
                             </Col>

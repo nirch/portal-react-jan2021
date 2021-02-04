@@ -1,21 +1,95 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import './users.css'
 import PortalNavbar from '../../components/navbar/PortalNavbar';
 import ActiveUserContext from '../../shared/activeUserContext'
 import { Redirect } from 'react-router-dom'
+import PortalSearchPager from '../../components/PortalSearchPager/PortalSearchPager';
+import PortalTable from '../../components/PortalTable/PortalTable';
+import PortalButtonSet from '../../components/portalButtonSet/PortalButtonSet';
+import server from '../../shared/server';
+
+
 
 const UsersPage = (props) => {
+
     const { handleLogout } = props;
     const activeUser = useContext(ActiveUserContext);
+    const [users, setUsers] = useState([]);
+    const buttons = [
+        { key: 1, label: "עובדים פעילים" },
+        { key: 0, label: "לא פעילים" }];
+    const [selectedButton, setSelectedButton] = useState(buttons[0]);
+    const [searchText, setSearchText] = useState("");
+    const [pageNumber, setPageNumber] = useState(0);
+    const [pages, setPages] = useState(null);
+    const [selectedRow, setSelectedRow] = useState(null);
+
+    useEffect(() => {
+         async function fetchUsers() {
+            const serverUsers = await server(activeUser, {
+                desc: false,
+                page: pageNumber,
+                search: searchText,
+                sorting: "userid",
+                userstatus: selectedButton.key
+            }, "SearchStaffUnderMe");
+           
+                 setUsers(serverUsers.data.users);
+                 setPages(serverUsers.data.pages)
+        } 
+        fetchUsers();
+    }, [pageNumber, searchText,selectedButton])
+
+
+    const headers = [{ key: "firstname", header: "שם" }, { key: "lastname", header: "שם משפחה" }, { key: "email", header: "אימייל" }];
+    //callback functions for search component
+    const handleSearch = (searchText) => {
+        setSearchText(searchText);
+        setPageNumber(0);
+    }
+    const pageChange = (num) => {
+        setPageNumber(num-1);
+    }
+    //callback function for table compoment
+
     
+    const handleSelectedRow = newSelectedRow =>   setSelectedRow(newSelectedRow);
+    const handleClick = newSelectedButton => {
+        if (selectedButton.key !== newSelectedButton.key)
+        {
+            setSelectedButton(newSelectedButton); 
+            setPageNumber(0);
+        }
+    };
+ 
+
     if (!activeUser) {
         return <Redirect to='/' />
     }
-    
+
+
+    if (selectedRow)
+    {
+        return <Redirect to= {`/users/${selectedRow.userid}`}/>
+    }
+
     return (
         <div className="p-users">
-            <PortalNavbar handleLogout={handleLogout}/>
-            <h1>משתמשים</h1>
+            <PortalNavbar handleLogout={handleLogout} />
+            <div className="p-user_search">
+                <PortalSearchPager
+                    placeholder="חיפוש עובדים"
+                    pagesNumber={pages}
+                    currentPage={pageNumber+1}
+                    handleSearch={handleSearch}
+                    pageChange={pageChange} />
+
+            </div>
+
+            <PortalTable headers={headers} data={users} changeSelected={handleSelectedRow}/>
+            <div className="p-users-buttons">
+                <PortalButtonSet buttons={buttons} handleClick={handleClick} selectedButton={selectedButton} hasTopBorder={true} />
+            </div>
         </div>
     );
 }

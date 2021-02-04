@@ -1,0 +1,38 @@
+.c-portal-tab-view .nav-tabs {
+    color: #1b166e;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.c-portal-tab-view .nav-link {
+    color: #1b166e;
+    text-align: center;
+    flex-grow: 1;
+}
+
+.c-portal-tab-view .nav-link.active,
+.c-portal-tab-view .nav-link.active:hover {
+    font-weight: bold;
+    color: #1b166e;
+    border: none;
+    margin-bottom: 0px;
+    border-bottom: 3px solid #1b166e;
+}
+
+.c-portal-tab-view .nav-link.active:hover {
+    padding-top: 8px;
+}
+
+.c-portal-tab-view .nav-link:hover {
+    border: none;
+    padding-top: 9px;
+}
+
+.c-portal-tab-view .nav {
+    border-color: #1b166e;
+}
+
+.c-portal-tab-view .tab-content {
+    display: flex;
+    justify-content: center;
+}
