@@ -27,14 +27,7 @@ const EmployeeHoursReports = ({data, handleReporting, openEmployee, onEmployeeSe
 
     function onReportSelectChange(reportId) {
         const newArray = [...checkedReports];
-        const index = newArray.indexOf(reportId);
-        
-        if (index !== -1) {
-            newArray.splice(index, 1);
-        } else {
-            newArray.push(reportId);
-        }
-        
+        newArray.includes(reportId) ? newArray.splice(newArray.indexOf(reportId), 1) : newArray.push(reportId);
         setCheckedReports(newArray);
     }
     
@@ -75,7 +68,7 @@ const EmployeeHoursReports = ({data, handleReporting, openEmployee, onEmployeeSe
     const reportsView = reports && reports.map(report => 
         <div key={report.reportid}>
             <ReportingButtons status={report.approval} onStatusSelect={onReporting} id={report.reportid}/>
-            <ReportDetails status={report.approval} checked={checkedReports.indexOf(report.reportid) !== -1 ? true : false} 
+            <ReportDetails status={report.approval} checked={checkedReports.includes(report.reportid)} 
             report={report} reportingPerimeter={reportingPerimeter} onReportSelectChange={() => {onReportSelectChange(report.reportid)}}/>
         </div>
     );
