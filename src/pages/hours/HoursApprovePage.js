@@ -7,6 +7,7 @@ import EmployeeHoursReports from '../../components/EmployeeHoursReports/Employee
 import { Accordion } from 'react-bootstrap';
 import server from '../../shared/server';
 import PortalDatePicker from '../../components/portalDatePicker/PortalDatePicker';
+import PortalSearchPager from '../../components/PortalSearchPager/PortalSearchPager';
 
 const HoursApprovePage = (props) => {
     const { handleLogout } = props;
@@ -77,6 +78,7 @@ const HoursApprovePage = (props) => {
             <PortalNavbar handleLogout={handleLogout}/>
             <h1>אישור שעות</h1>
             <PortalDatePicker onlyMonth={true} handleDateSelection={onDateChange} date={{year, month, day}}/>
+            <PortalSearchPager placeholder='חיפוש עובד' />
             <Accordion>
                 {employeesView}
             </Accordion>
