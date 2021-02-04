@@ -5,16 +5,13 @@ import ReportingButtons from './ReportingButtons/ReportingButtons';
 import ReportDetails from './ReportDetails/ReportDetails';
 import arrow from '../../assets/images/arrow_left.png';
 import calculateHours from '../../shared/calculateHours';
-import server from '../../shared/server';
-import ActiveUserContext from '../../shared/activeUserContext';
 
 
-const EmployeeHoursReports = ({data, onDataUpdate, index, openEmployee, onEmployeeSelect}) => {
+const EmployeeHoursReports = ({data, handleReporting, openEmployee, onEmployeeSelect}) => {
     const {firstname, lastname, reports, reportingPerimeter } = data;
     const [isAllChecked, setIsAllChecked] = useState(false);
     const [isOpen, setIsOpen] = useState('');
     const [checkedReports, setCheckedReports] = useState([]);
-    const activeUser = useContext(ActiveUserContext);
     
     let approved = 0, unapproved = 0, rejected = 0;
     reports.map(report => {
@@ -48,24 +45,8 @@ const EmployeeHoursReports = ({data, onDataUpdate, index, openEmployee, onEmploy
 
     }
 
-    async function handleReport(status, reportids){
-        
-        const checkdate2 = true;
-
-        const res = await server(activeUser, {reportids, checkdate2, status}, 'SetReportApproval');
-        if (res.status === 200){
-            const newReports = [...reports]
-            newReports.map(report => {
-                if (reportids.indexOf(report.reportid) !== -1) {
-                    report.approval = status.toString();
-                }
-            });
-            onDataUpdate(index, newReports);
-        }
-    }
-
-    function onStatusSelect(status, reportId){
-        handleReport(status, [reportId]);
+    function onReporting(status, reportids){
+        handleReporting(data.userid, status, reportids);
     }
 
     function handleEmployeeSelect() {
@@ -91,9 +72,9 @@ const EmployeeHoursReports = ({data, onDataUpdate, index, openEmployee, onEmploy
         return (aDate - bDate);
     });
 
-    const reportsView = reports && reports.map((report, index) => 
+    const reportsView = reports && reports.map(report => 
         <div key={report.reportid}>
-            <ReportingButtons status={report.approval} onStatusSelect={onStatusSelect} id={report.reportid}/>
+            <ReportingButtons status={report.approval} onStatusSelect={onReporting} id={report.reportid}/>
             <ReportDetails status={report.approval} checked={checkedReports.indexOf(report.reportid) !== -1 ? true : false} 
             report={report} reportingPerimeter={reportingPerimeter} onReportSelectChange={() => {onReportSelectChange(report.reportid)}}/>
         </div>
@@ -120,11 +101,11 @@ const EmployeeHoursReports = ({data, onDataUpdate, index, openEmployee, onEmploy
                             </div>
                             <div className='radio-text'>סמן הכל</div>
                         </div>
-                        <div className='mass-approve radio-group' onClick={() => {handleReport(1, checkedReports)}}>
+                        <div className='mass-approve radio-group' onClick={() => {onReporting(1, checkedReports)}}>
                             <div className='radio'></div>
                             <div className='radio-text'>אישור מסומנים</div>
                         </div>
-                        <div className='mass-reject radio-group' onClick={() => {handleReport(-1, checkedReports)}}>
+                        <div className='mass-reject radio-group' onClick={() => {onReporting(-1, checkedReports)}}>
                             <div className='radio'></div>
                             <div className='radio-text'>דחיית מסומנים</div>
                         </div>

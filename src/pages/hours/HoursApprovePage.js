@@ -20,25 +20,43 @@ const HoursApprovePage = (props) => {
             const year = today.getFullYear();
             
             const res = await server(activeUser, {month, year}, 'GetAllReporters');
-            setData(res.data);
-        }
-        getReports();
+            const dataObj = res.data.reduce((employee, item) => {
+                return {
+                    ...employee,
+                    [item['userid']]: item,
+                  };
+                }, {});
+                setData(dataObj);
+            }
+            getReports();
     },[])
+    
+    async function handleReporting(empId, status, reportids){
+        
+        const checkdate2 = true;
 
-    function onDataUpdate(empIndex, reports) {
-        const newData = [...data];
-        newData[empIndex].reports = reports;
-        setData(newData);
+        const res = await server(activeUser, {reportids, checkdate2, status}, 'SetReportApproval');
+        if (res.status === 200){
+            const newEmp = {...data[empId]};
+            newEmp.reports.forEach(report => {
+                if (reportids.includes(report.reportid)) {
+                    report.approval = status.toString();
+                }
+            });
+            const newData = {...data};
+            newData[empId] = newEmp;
+            setData(newData);
+        }
     }
 
     function onEmployeeSelect(empId){
         openEmployee !== empId ? setOpenEmployee(empId) : setOpenEmployee('');
     }
-
-    const employeesView = data && data.map((employee, index) => {
-        if (employee.reports.length > 0) {
-        return <EmployeeHoursReports data={employee} key={employee.userid} onDataUpdate={onDataUpdate} index={index} 
-            openEmployee={openEmployee === employee.userid} onEmployeeSelect={() => onEmployeeSelect(employee.userid)}/>
+     
+    const employeesView = data && Object.keys(data).map(employee => {
+        if (data[employee].reports.length > 0) {
+        return <EmployeeHoursReports data={data[employee]} key={employee} handleReporting={handleReporting} 
+            openEmployee={openEmployee === employee} onEmployeeSelect={() => onEmployeeSelect(employee)}/>
         }
     });
 
