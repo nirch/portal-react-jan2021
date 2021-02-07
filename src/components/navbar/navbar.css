@@ -341,7 +341,14 @@ margin: 0
 }
 
 .c-navbar .users-tab-users .usersTab-open{
-    display: block;
-
+	display: block;
+	position: relative;
+	animation: move-text 0.5s ;
+	animation-timing-function: linear;
 }
 
+
+@keyframes move-text{
+	from {right: 100px;}
+	to {right: 0px;}
+}
