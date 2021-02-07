@@ -1,0 +1,49 @@
+.c-portal-multiple-select{
+    font-size:12px;
+    font-family: Assistant-SemiBold;
+    color:#5d5d5d;
+    background-color: white;
+    padding:10px 31px;
+    position: relative;
+}
+
+.c-portal-multiple-select .title{
+    margin-bottom: 6px;
+}
+
+.c-portal-multiple-select .selections{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
+
+.c-portal-multiple-select .selections .selector{
+    margin-left: 30px;
+}
+
+.c-portal-multiple-select .selections .selected-options{
+    font-family: Assistant-Light;
+    margin-left: 30px;
+    display: flex;
+    
+}
+
+.c-portal-multiple-select .selections .selected-options .delete span{
+    font-size: 20px;
+    display: inline-block;
+    transform: rotate(45deg);
+    line-height: 0;
+    margin-top: 9px;
+    margin-right: 3px;
+    font-family: Assistant-semiBold;
+}
+
+.c-portal-multiple-select .options-view{
+    width: max-content;
+    padding: 3px 8px 3px 30px;
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1);
+    font-family: Assistant-Light;
+    position: absolute;
+    background-color: white;
+    z-index: 1;
+}
