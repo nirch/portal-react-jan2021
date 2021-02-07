@@ -17,20 +17,28 @@
   padding:0;
 }
 
-.c-navbar .haedlineRow .hamburger,.arrow{
+/* .c-navbar .haedlineRow .hamburger{
 	margin-top: 17px;
 	margin-right: 15px; 
-	max-width: 30%;	
+
 }
+.c-navbar .haedlineRow .arrow> span{
+	margin-top: 5px;
+	margin-right: 18px; 
+} */
+.c-navbar .haedlineRow .hamburger{
+	position: absolute;
+	right: 19px;
+	top: 15px;
+}
+
 .c-navbar .haedlineRow .arrow{
-	margin-top: 10px;
-}
-.c-navbar .haedlineRow .hamburger,.arrow{
-position: absolute;
-left: 90%;
-}
+	position: absolute;
+	right: 18px;
+	top: 5px;
+	}
 .c-navbar .haedlineRow .arrow>span{
-	font-size: 30px;
+	font-size: 28px;
 }
 .c-navbar .haedlineRow .haedline{
 	margin-top: 14px;
