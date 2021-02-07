@@ -8,6 +8,8 @@ import UserDetailsPage from './pages/users/UserDetailsPage'
 import HoursReportPage from './pages/hours/HoursReportPage'
 import HoursApprovePage from './pages/hours/HoursApprovePage'
 import ActiveUserContext from './shared/activeUserContext'
+import server from './shared/server'
+import enums from './shared/enums'
 
 import './App.css';
 
@@ -15,9 +17,18 @@ const App = () => {
 
   const [activeUser, setActiveUser] = useState(localStorage.activeUser ? JSON.parse(localStorage.activeUser) : null);
 
-  const handleLogin = (activeUser) => {
-    setActiveUser(activeUser);
-    localStorage.activeUser = JSON.stringify(activeUser);
+  async function handleLogin (activeUser) {
+    const profileData=await server(activeUser,{} , 'GetMyProfile'); 
+    const user= {
+      "token": activeUser.token,
+      "isAdmin": activeUser.isAdmin,
+      "firstname": profileData.data.firstname,
+      "lastname": profileData.data.lastname,
+      "image":enums.imgsDomain+profileData.data.image
+    }
+    console.log(user);
+    setActiveUser(user);
+    localStorage.activeUser = JSON.stringify(user);
   }
 
   const handleLogout = () => {
