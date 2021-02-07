@@ -6,36 +6,85 @@ import { Redirect } from 'react-router-dom'
 import EmployeeHoursReports from '../../components/EmployeeHoursReports/EmployeeHoursReports';
 import { Accordion } from 'react-bootstrap';
 import server from '../../shared/server';
+import PortalDatePicker from '../../components/portalDatePicker/PortalDatePicker';
+import PortalSearchPager from '../../components/PortalSearchPager/PortalSearchPager';
 
 const HoursApprovePage = (props) => {
     const { handleLogout } = props;
     const activeUser = useContext(ActiveUserContext);
     const [data, setData] = useState('');
+    const [openEmployee, setOpenEmployee] = useState('');
+    const [date, setDate] = useState(new Date());
+    const [filter, setFilter] = useState('');
 
     useEffect(() => {
         async function getReports(){
-            const today = new Date();
-            const month = today.getMonth()+1;
-            const year = today.getFullYear();
+            const month = date.getMonth()+1;
+            const year = date.getFullYear();
             
             const res = await server(activeUser, {month, year}, 'GetAllReporters');
-            setData(res.data);
-        }
-        getReports();
-    },[])
+            const dataObj = res.data.reduce((employee, item) => {
+                return {
+                    ...employee,
+                    [item['userid']]: item,
+                  };
+                }, {});
+                setData(dataObj);
+            }
+            getReports();
+    },[date])
+    
+    async function handleReporting(empId, status, reportids){
+        
+        const checkdate2 = true;
 
-    function onDataUpdate(empIndex, reports) {
-        const newData = [...data];
-        newData[empIndex].reports = reports;
-        setData(newData);
+        const res = await server(activeUser, {reportids, checkdate2, status}, 'SetReportApproval');
+        if (res.status === 200){
+            const newEmp = {...data[empId]};
+            newEmp.reports.forEach(report => {
+                if (reportids.includes(report.reportid)) {
+                    report.approval = status.toString();
+                }
+            });
+            const newData = {...data};
+            newData[empId] = newEmp;
+            setData(newData);
+        }
     }
 
-    const employeesView = data && data.map((employee, index) => {
-        if (employee.reports.length > 0) {
-        return <EmployeeHoursReports data={employee} key={employee.userid} onDataUpdate={onDataUpdate} index={index}/>
+    function onDateChange (dateObj) {
+        const {day, month, year} = dateObj;
+        setDate(new Date(year, month-1, day));
+    }
+
+    function onEmployeeSelect(empId){
+        openEmployee !== empId ? setOpenEmployee(empId) : setOpenEmployee('');
+    }
+
+    let filteredData = {};
+
+    if (!filter && data) {
+        filteredData = data;
+    } else if (filter) {
+        const filterArr = filter.split(' ');
+        Object.keys(data).forEach(employee => {
+            for (let i = 0; i < filterArr.length ; i++) {
+                console.log(data[employee].lname);
+                if (data[employee].lastname.includes(filterArr[i]) || data[employee].firstname.includes(filterArr[i])){
+                    filteredData[employee] = data[employee];
+                }
+            }
+        }) 
+    }
+     
+    const employeesView = filteredData && Object.keys(filteredData).map(employee => {
+        if (data[employee].reports.length > 0) {
+        return <EmployeeHoursReports data={data[employee]} key={employee} handleReporting={handleReporting} 
+            openEmployee={openEmployee === employee} onEmployeeSelect={() => onEmployeeSelect(employee)}/>
         }
     });
 
+    const [month, day, year] = date.toLocaleDateString("en-US").split("/");
 
     if (!activeUser) {
         return <Redirect to='/' />
@@ -44,7 +93,10 @@ const HoursApprovePage = (props) => {
     return (
         <div className="p-hours-approve">
             <PortalNavbar handleLogout={handleLogout}/>
-            <h1>אישור שעות</h1>
+            <PortalDatePicker onlyMonth={true} handleDateSelection={onDateChange} date={{year, month, day}}/>
+            <div className='search-wrapper'>
+                <PortalSearchPager placeholder='חיפוש עובד' handleSearch={setFilter}/>
+            </div>
             <Accordion>
                 {employeesView}
             </Accordion>
