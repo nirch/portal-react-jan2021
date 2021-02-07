@@ -3,7 +3,7 @@
     justify-content: center;
     align-items: center;
     height: 86px;
-    font-size: Assistant-SemiBold;
+    font-family: Assistant-SemiBold;
     font-size: 28px;
 }
 
@@ -41,7 +41,7 @@
 }
 
 .c-portal-date-picker .date-view {
-    width: 155px;
+    width: 160px;
     display: flex;
     justify-content: center;
 }
