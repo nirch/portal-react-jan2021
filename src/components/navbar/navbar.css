@@ -9,10 +9,9 @@
 
 }
 
-.c-navbar .haedlineRow .row{
+.c-navbar .haedlineRow {
 	margin:0;
-	display: flex;
-	justify-content: center;
+
   }
 
 .c-navbar .haedlineRow .col{
