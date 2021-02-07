@@ -14,6 +14,7 @@ import UserProfileTab from '../../components/UserDetails/UserProfileTab';
 import UserCoursesTab from '../../components/UserDetails/UserCoursesTab';
 import UserEmployeesTab from '../../components/UserDetails/UserEmployeesTab';
 import UserReportsTab from '../../components/UserDetails/UserReportsTab';
+import Enums from '../../shared/enums';
 
 const UserDetailsPage = (props) => {
     const { handleLogout } = props;
@@ -21,7 +22,7 @@ const UserDetailsPage = (props) => {
     const [userDetails, setUserDetails] = useState(null);
     const activeUser = useContext(ActiveUserContext);
 
-    const imgsDomain = 'https://pil1.appleseeds.org.il/dcnir/';
+    const imgsDomain = Enums.imgsDomain;
 
     useEffect(() => {
         async function fetchUserDetails() {
