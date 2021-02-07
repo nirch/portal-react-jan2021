@@ -21,7 +21,7 @@ const HoursApprovePage = (props) => {
         async function getReports(){
             const month = date.getMonth()+1;
             const year = date.getFullYear();
-            
+
             const res = await server(activeUser, {month, year}, 'GetAllReporters');
             const dataObj = res.data.reduce((employee, item) => {
                 return {
@@ -61,27 +61,29 @@ const HoursApprovePage = (props) => {
         openEmployee !== empId ? setOpenEmployee(empId) : setOpenEmployee('');
     }
 
-    let filteredData = {};
-
-    if (!filter && data) {
-        filteredData = data;
-    } else if (filter) {
+    function filterData() {
         const filterArr = filter.split(' ');
-        Object.keys(data).forEach(employee => {
-            for (let i = 0; i < filterArr.length ; i++) {
-                console.log(data[employee].lname);
-                if (data[employee].lastname.includes(filterArr[i]) || data[employee].firstname.includes(filterArr[i])){
-                    filteredData[employee] = data[employee];
+        const filteredData = Object.values(data).filter(employee => {
+            const hasReports = employee.reports.length > 0;
+
+            if (filterArr.length === 0 && hasReports) {
+                return true
+            } else if (hasReports) {
+                for (let i = 0; i < filterArr.length ; i++) {
+                    return (data[employee.userid].lastname.includes(filterArr[i]) || data[employee.userid].firstname.includes(filterArr[i]))
                 }
             }
-        }) 
+        });
+        return filteredData
     }
+
+    const filteredData = data && filterData();
      
-    const employeesView = filteredData && Object.keys(filteredData).map(employee => {
-        if (data[employee].reports.length > 0) {
-        return <EmployeeHoursReports data={data[employee]} key={employee} handleReporting={handleReporting} 
-            openEmployee={openEmployee === employee} onEmployeeSelect={() => onEmployeeSelect(employee)}/>
-        }
+    const employeesView = filteredData && Object.values(filteredData).map(employee => {
+        const empId = employee.userid;
+
+        return <EmployeeHoursReports data={data[empId]} key={empId} handleReporting={handleReporting} 
+            openEmployee={openEmployee === empId} onEmployeeSelect={() => onEmployeeSelect(empId)}/>
     });
 
     const [month, day, year] = date.toLocaleDateString("en-US").split("/");
