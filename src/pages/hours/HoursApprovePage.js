@@ -16,6 +16,7 @@ const HoursApprovePage = (props) => {
     const [openEmployee, setOpenEmployee] = useState('');
     const [date, setDate] = useState(new Date());
     const [filter, setFilter] = useState('');
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
         async function getReports(){
@@ -55,6 +56,7 @@ const HoursApprovePage = (props) => {
     function onDateChange (dateObj) {
         const {day, month, year} = dateObj;
         setDate(new Date(year, month-1, day));
+        setPage(1);
     }
 
     function onEmployeeSelect(empId){
@@ -79,7 +81,8 @@ const HoursApprovePage = (props) => {
 
     const filteredData = data && filterData();
      
-    const employeesView = filteredData && Object.values(filteredData).map(employee => {
+    // using slice to show only 15 employees in page
+    const employeesView = filteredData && filteredData.slice((page-1)*15,page*15).map(employee => {
         const empId = employee.userid;
 
         return <EmployeeHoursReports data={data[empId]} key={empId} handleReporting={handleReporting} 
@@ -97,7 +100,8 @@ const HoursApprovePage = (props) => {
             <PortalNavbar handleLogout={handleLogout}/>
             <PortalDatePicker onlyMonth={true} handleDateSelection={onDateChange} date={{year, month, day}}/>
             <div className='search-wrapper'>
-                <PortalSearchPager placeholder='חיפוש עובד' handleSearch={setFilter}/>
+                <PortalSearchPager placeholder='חיפוש עובד' handleSearch={setFilter} pagesNumber={Math.ceil(filteredData.length / 15)} 
+                    currentPage={page} pageChange={setPage}/>
             </div>
             <Accordion>
                 {employeesView}
