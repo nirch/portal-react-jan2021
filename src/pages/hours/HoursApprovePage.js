@@ -15,6 +15,7 @@ const HoursApprovePage = (props) => {
     const [data, setData] = useState('');
     const [openEmployee, setOpenEmployee] = useState('');
     const [date, setDate] = useState(new Date());
+    const [filter, setFilter] = useState('');
 
     useEffect(() => {
         async function getReports(){
@@ -59,8 +60,24 @@ const HoursApprovePage = (props) => {
     function onEmployeeSelect(empId){
         openEmployee !== empId ? setOpenEmployee(empId) : setOpenEmployee('');
     }
+
+    let filteredData = {};
+
+    if (!filter && data) {
+        filteredData = data;
+    } else if (filter) {
+        const filterArr = filter.split(' ');
+        Object.keys(data).forEach(employee => {
+            for (let i = 0; i < filterArr.length ; i++) {
+                console.log(data[employee].lname);
+                if (data[employee].lastname.includes(filterArr[i]) || data[employee].firstname.includes(filterArr[i])){
+                    filteredData[employee] = data[employee];
+                }
+            }
+        }) 
+    }
      
-    const employeesView = data && Object.keys(data).map(employee => {
+    const employeesView = filteredData && Object.keys(filteredData).map(employee => {
         if (data[employee].reports.length > 0) {
         return <EmployeeHoursReports data={data[employee]} key={employee} handleReporting={handleReporting} 
             openEmployee={openEmployee === employee} onEmployeeSelect={() => onEmployeeSelect(employee)}/>
@@ -77,7 +94,9 @@ const HoursApprovePage = (props) => {
         <div className="p-hours-approve">
             <PortalNavbar handleLogout={handleLogout}/>
             <PortalDatePicker onlyMonth={true} handleDateSelection={onDateChange} date={{year, month, day}}/>
-            <div className='search-wrapper'><PortalSearchPager placeholder='חיפוש עובד' /></div>
+            <div className='search-wrapper'>
+                <PortalSearchPager placeholder='חיפוש עובד' handleSearch={setFilter}/>
+            </div>
             <Accordion>
                 {employeesView}
             </Accordion>
