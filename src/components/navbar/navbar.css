@@ -1,4 +1,4 @@
-.c-navbar .hamburger > div{
+.c-navbar  .hamburger > div{
     width: 25px;
     height: 4px;
     background-color:#5d5d5d;
@@ -6,9 +6,46 @@
 }
 
 
+.c-navbar .haedlineRow {
+	margin:0;
+	justify-content: center;
+	position: relative;
 
-.c-navbar .hamburger{
-    margin: 17px 19px 0 0;
+  }
+
+.c-navbar .haedlineRow .col{
+  padding:0;
+}
+
+/* .c-navbar .haedlineRow .hamburger{
+	margin-top: 17px;
+	margin-right: 15px; 
+
+}
+.c-navbar .haedlineRow .arrow> span{
+	margin-top: 5px;
+	margin-right: 18px; 
+} */
+.c-navbar .haedlineRow .hamburger{
+	position: absolute;
+	right: 19px;
+	top: 15px;
+}
+
+.c-navbar .haedlineRow .arrow{
+	position: absolute;
+	right: 18px;
+	top: 5px;
+	}
+.c-navbar .haedlineRow .arrow>span{
+	font-size: 28px;
+}
+.c-navbar .haedlineRow .haedline{
+	margin-top: 14px;
+}
+.c-navbar .haedlineRow .haedline p{
+	font-size: 15px;
+	color: #5d5d5d;
 }
 
 .c-navbar .sidebar-wrap {
@@ -115,21 +152,29 @@ margin-bottom: 15%;
     padding: 0;
     /* max-height: 10.9%; */
 }
+
+.c-navbar .profile-image{
+    margin-right: 3% ;
+}
+
+
 /*add all left colums here */
 .c-navbar .name-wrap,.users-tab-users, .courses-tab-courses,.hoursReport-tab-hoursReport,.hoursAprove-tab-hoursAprove,.logout-tab-logout {
     padding: 0;
-    margin-right: 3%;
+    margin-right: 5%;
   
     /* max-height: 10.9%; */
 }
-.c-navbar .name-wrap{
+.c-navbar .name-wrap,.courses-tab-courses,.hoursReport-tab-hoursReport,.hoursAprove-tab-hoursAprove, .logout-tab-logout {
     display:flex;
     align-items: stretch;
 }
 
 
 .c-navbar .profile-image img{
-
+	width: 5.8vh;
+	height: 5.8vh;
+    object-fit:cover;
     /* margin: 24px 16.6px 10.1px 0 ; */
     display: inline-block;
     vertical-align: middle;
@@ -150,7 +195,9 @@ margin-bottom: 15%;
 	z-index: 2;
 }
 .c-navbar .sidebar-open .profile-image img{
-    width: 5.8vh;
+	border-radius: 50%;
+	width: 5.8vh;
+	height: 5.8vh;
     object-fit:cover;
     overflow:  auto;
     margin: 35% 0 5% 0;
@@ -166,7 +213,7 @@ margin-bottom: 15%;
 .c-navbar .sidebar-open .user-name{
     font-size:6.5vw;
     text-align: right;
-    margin: 5% 0 5% 0 ;
+    margin: 8% 0 5% 0 ;
 }
 .c-navbar .sidebar-options .menu-information{
 	transform: translateX(40vw);
@@ -294,7 +341,14 @@ margin: 0
 }
 
 .c-navbar .users-tab-users .usersTab-open{
-    display: block;
-
+	display: block;
+	position: relative;
+	animation: move-text 0.5s ;
+	animation-timing-function: linear;
 }
 
+
+@keyframes move-text{
+	from {right: 100px;}
+	to {right: 0px;}
+}

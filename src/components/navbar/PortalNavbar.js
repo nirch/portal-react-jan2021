@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Navbar, Nav, Row, Col } from 'react-bootstrap'
 import logo from '../../assets/images/logo.png';
 import profileIcon from '../../assets/images/profile_icon.png';
@@ -9,15 +9,18 @@ import hoursAprove from '../../assets/images/hoursAprove.png';
 import logout from '../../assets/images/logout.png';
 import arrow_down from '../../assets/images/arrow_down.png';
 import arrow_up from '../../assets/images/arrow_up.png';
+import ActiveUserContext from '../../shared/activeUserContext';
 
 import './navbar.css'
 
 const PortalNavbar = (props) => {
-    const { handleLogout } = props;
+    const { handleLogout, haedline, back } = props;
 	const [sidebarOpen, setSidebarOpen] = useState(false);
 	const [usersTabOpen, setUsersTabOpen] = useState(false);
+	const activeUser = useContext(ActiveUserContext);
 	
-   
+	const name= activeUser.firstname+ " "+ activeUser.lastname;
+	
     let sidebar= "";
     if (sidebarOpen){
         sidebar= "sidebar-open";
@@ -32,15 +35,26 @@ const PortalNavbar = (props) => {
     if (usersTabOpen){
         usersTabToggle= "usersTab-open";
 	}
+	
 
     return (
 <div className="c-navbar">
 	<div className={sidebar}>
-		<div className="hamburger" onClick={() => setSidebarOpen(true)}>
-			<div ></div>
-			<div></div>
-			<div></div>
-		</div>
+		<Row className="haedlineRow">
+			{back? <div className="arrow">
+				<span onClick={() => back()}>&#10132;</span>
+			</div> :
+			<div className="hamburger" onClick={() => setSidebarOpen(true)}>
+				<div ></div>
+				<div></div>
+				<div></div>
+			</div>}
+			<div className="haedline">
+				<p>{haedline}</p>
+			</div>
+		
+		</Row>
+	
 		<div className="sidebar-background" onClick={() => setSidebarOpen(false)}></div>
 		<div className="sidebar-wrap">
 			<div className="sidebar">
@@ -54,11 +68,11 @@ const PortalNavbar = (props) => {
 				</div>
 				<Row className="profile-preview">
 					<Col className="profile-image">
-					<img   src={profileIcon}></img>
+					{activeUser.image? <img src={activeUser.image}></img> : <img src={profileIcon}></img>}
 					</Col>
 					<Col className="name-wrap">
 							<span className="user-name">
-								שם
+								<p>{name}</p>
 							</span>
 					</Col>
 				</Row>
@@ -67,7 +81,7 @@ const PortalNavbar = (props) => {
 				<div className="menu-information"  ng-click="goToSettingPage()">
 					<Row className="courses-tab">
                             <Col className="courses-tab-image">
-                                <img   src={courseTab}></img>
+                                <img src={courseTab}></img>
                             </Col>
                             <Col className="courses-tab-courses">
                                 <a href="#/courses">
@@ -82,12 +96,12 @@ const PortalNavbar = (props) => {
                                 <img src={usersTab}></img>
                             </Col>
                             <Col className="users-tab-users">
-									<Row>
-										<a href="#/users">
+									<Row onClick={toggleUsersTab}>
+										<a>
 											משתמשים
 										</a>
 										
-										{usersTabOpen? <img src={arrow_up} onClick={toggleUsersTab}></img> : <img src={arrow_down} onClick={toggleUsersTab}></img>}
+										{usersTabOpen? <img src={arrow_up} ></img> : <img src={arrow_down} onClick={toggleUsersTab}></img>}
 									</Row>
 									<div className={usersTabToggle}>
 										<Row>
@@ -125,7 +139,7 @@ const PortalNavbar = (props) => {
 					<div className="menu-information">
 						<Row className="hoursAprove-tab">
 								<Col className="hoursAprove-tab-image">
-									<img  ng-click="profileClick()" src={hoursAprove}></img>
+									<img src={hoursAprove}></img>
 								</Col>
 								<Col className="hoursAprove-tab-hoursAprove">
 									<a href="#/hours-approve">
@@ -137,7 +151,7 @@ const PortalNavbar = (props) => {
 					<div className="menu-information">
 						<Row className="logout-tab">
                             <Col className="logout-tab-image">
-                                <img  ng-click="profileClick()" src={logout}></img>
+                                <img src={logout}></img>
                             </Col>
                             <Col className="logout-tab-logout">
                                 <a onClick={handleLogout}>
