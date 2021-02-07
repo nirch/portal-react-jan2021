@@ -13,7 +13,7 @@ import arrow_up from '../../assets/images/arrow_up.png';
 import './navbar.css'
 
 const PortalNavbar = (props) => {
-    const { handleLogout } = props;
+    const { handleLogout, haedline, back } = props;
 	const [sidebarOpen, setSidebarOpen] = useState(false);
 	const [usersTabOpen, setUsersTabOpen] = useState(false);
 	
@@ -36,11 +36,18 @@ const PortalNavbar = (props) => {
     return (
 <div className="c-navbar">
 	<div className={sidebar}>
-		<div className="hamburger" onClick={() => setSidebarOpen(true)}>
-			<div ></div>
-			<div></div>
-			<div></div>
-		</div>
+		<Row className="haedlineRow">
+			<Col className="hamburger" onClick={() => setSidebarOpen(true)}>
+				<div ></div>
+				<div></div>
+				<div></div>
+			</Col>
+			<Col className="haedline">
+				<p>{haedline}</p>
+			</Col>
+		
+		</Row>
+	
 		<div className="sidebar-background" onClick={() => setSidebarOpen(false)}></div>
 		<div className="sidebar-wrap">
 			<div className="sidebar">
@@ -67,7 +74,7 @@ const PortalNavbar = (props) => {
 				<div className="menu-information"  ng-click="goToSettingPage()">
 					<Row className="courses-tab">
                             <Col className="courses-tab-image">
-                                <img   src={courseTab}></img>
+                                <img src={courseTab}></img>
                             </Col>
                             <Col className="courses-tab-courses">
                                 <a href="#/courses">
@@ -82,12 +89,12 @@ const PortalNavbar = (props) => {
                                 <img src={usersTab}></img>
                             </Col>
                             <Col className="users-tab-users">
-									<Row>
-										<a href="#/users">
+									<Row onClick={toggleUsersTab}>
+										<a>
 											משתמשים
 										</a>
 										
-										{usersTabOpen? <img src={arrow_up} onClick={toggleUsersTab}></img> : <img src={arrow_down} onClick={toggleUsersTab}></img>}
+										{usersTabOpen? <img src={arrow_up} ></img> : <img src={arrow_down} onClick={toggleUsersTab}></img>}
 									</Row>
 									<div className={usersTabToggle}>
 										<Row>
@@ -125,7 +132,7 @@ const PortalNavbar = (props) => {
 					<div className="menu-information">
 						<Row className="hoursAprove-tab">
 								<Col className="hoursAprove-tab-image">
-									<img  ng-click="profileClick()" src={hoursAprove}></img>
+									<img src={hoursAprove}></img>
 								</Col>
 								<Col className="hoursAprove-tab-hoursAprove">
 									<a href="#/hours-approve">
@@ -137,7 +144,7 @@ const PortalNavbar = (props) => {
 					<div className="menu-information">
 						<Row className="logout-tab">
                             <Col className="logout-tab-image">
-                                <img  ng-click="profileClick()" src={logout}></img>
+                                <img src={logout}></img>
                             </Col>
                             <Col className="logout-tab-logout">
                                 <a onClick={handleLogout}>
