@@ -53,9 +53,9 @@ function PortalDatePicker(props) {
 
     return (
         <div className="c-portal-date-picker">
-            <button type="button" className="button-next" onClick={() => handleClick(1)} disabled={isDisabled(1)}></button>
+            <button type="button" className="button-next" onClick={() => handleClick(-1)} disabled={isDisabled(-1)}></button>
                 <div className="date-view">{dateView()}</div>
-            <button type="button" className="button-back" onClick={() => handleClick(-1)} disabled={isDisabled(-1)}></button>
+            <button type="button" className="button-back" onClick={() => handleClick(1)} disabled={isDisabled(1)}></button>
         </div>
     );
 }
