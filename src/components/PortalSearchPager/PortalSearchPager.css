@@ -30,3 +30,9 @@
   .p-paging > span{
       display: flex;
   }
+
+  .p-input-pager_input::placeholder {
+    padding: 0 26px;
+    font-size: 20px;
+    color: #707070;
+  }
