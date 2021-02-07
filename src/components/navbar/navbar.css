@@ -5,12 +5,11 @@
     margin-bottom: 3px ;
 }
 
-.c-navbar .haedline .hamburger {
-
-}
 
 .c-navbar .haedlineRow {
 	margin:0;
+	justify-content: center;
+	position: relative;
 
   }
 
@@ -18,11 +17,20 @@
   padding:0;
 }
 
-
-.c-navbar .haedlineRow .hamburger{
+.c-navbar .haedlineRow .hamburger,.arrow{
 	margin-top: 17px;
 	margin-right: 15px; 
-	max-width: 30%;
+	max-width: 30%;	
+}
+.c-navbar .haedlineRow .arrow{
+	margin-top: 10px;
+}
+.c-navbar .haedlineRow .hamburger,.arrow{
+position: absolute;
+left: 90%;
+}
+.c-navbar .haedlineRow .arrow>span{
+	font-size: 30px;
 }
 .c-navbar .haedlineRow .haedline{
 	margin-top: 14px;
@@ -136,21 +144,29 @@ margin-bottom: 15%;
     padding: 0;
     /* max-height: 10.9%; */
 }
+
+.c-navbar .profile-image{
+    margin-right: 3% ;
+}
+
+
 /*add all left colums here */
 .c-navbar .name-wrap,.users-tab-users, .courses-tab-courses,.hoursReport-tab-hoursReport,.hoursAprove-tab-hoursAprove,.logout-tab-logout {
     padding: 0;
-    margin-right: 3%;
+    margin-right: 5%;
   
     /* max-height: 10.9%; */
 }
-.c-navbar .name-wrap,.courses-tab-courses{
+.c-navbar .name-wrap,.courses-tab-courses,.hoursReport-tab-hoursReport,.hoursAprove-tab-hoursAprove, .logout-tab-logout {
     display:flex;
     align-items: stretch;
 }
 
 
 .c-navbar .profile-image img{
-
+	width: 5.8vh;
+	height: 5.8vh;
+    object-fit:cover;
     /* margin: 24px 16.6px 10.1px 0 ; */
     display: inline-block;
     vertical-align: middle;
@@ -171,7 +187,9 @@ margin-bottom: 15%;
 	z-index: 2;
 }
 .c-navbar .sidebar-open .profile-image img{
-    width: 5.8vh;
+	border-radius: 50%;
+	width: 5.8vh;
+	height: 5.8vh;
     object-fit:cover;
     overflow:  auto;
     margin: 35% 0 5% 0;
@@ -187,7 +205,7 @@ margin-bottom: 15%;
 .c-navbar .sidebar-open .user-name{
     font-size:6.5vw;
     text-align: right;
-    margin: 5% 0 5% 0 ;
+    margin: 8% 0 5% 0 ;
 }
 .c-navbar .sidebar-options .menu-information{
 	transform: translateX(40vw);
