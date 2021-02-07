@@ -47,3 +47,8 @@
     background-color: white;
     z-index: 1;
 }
+
+.c-portal-multiple-select .options-view .option{
+    padding: 3px 0;
+
+}
