@@ -119,6 +119,8 @@ function CourseDetailsTab(props)
         {projects?portalProjectsSelect:""}
         <div>תאריך לידה</div>
         {portalDate}
+        <div>עיר</div>
+        {/*city?portalCitiesSelect:""*/}
     </div>);
 }
 export default CourseDetailsTab;
