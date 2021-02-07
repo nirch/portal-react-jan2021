@@ -49,10 +49,10 @@ const CourseDetailsPage = (props) => {
 
    
     const tabs =
-     [{ "header": "קורס", "view": <CourseDetailsTab/> }, 
-    { "header": "סילבוס", "view": <CourseSyllabusTab/> }, 
-    { "header": "סטודנטים", "view": <StudentsTab/> }, 
-    { "header": "מדריכים", "view": <TeachersTab/> }];
+     [{ "header": "קורס", "view": <CourseDetailsTab courseDetails={course} /> }, 
+    { "header": "סילבוס", "view": <CourseSyllabusTab courseDetails={course} /> }, 
+    { "header": "סטודנטים", "view": <StudentsTab courseDetails={course}/> }, 
+    { "header": "מדריכים", "view": <TeachersTab courseDetails={course}/> }];
 
    
    
