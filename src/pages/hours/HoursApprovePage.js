@@ -8,6 +8,7 @@ import { Accordion } from 'react-bootstrap';
 import server from '../../shared/server';
 import PortalDatePicker from '../../components/portalDatePicker/PortalDatePicker';
 import PortalSearchPager from '../../components/PortalSearchPager/PortalSearchPager';
+import PortalMultipleSelect from '../../components/PortalMultipleSelect/PortalMultipleSelect';
 
 const HoursApprovePage = (props) => {
     const { handleLogout } = props;
@@ -17,6 +18,8 @@ const HoursApprovePage = (props) => {
     const [date, setDate] = useState(new Date());
     const [filter, setFilter] = useState('');
     const [page, setPage] = useState(1);
+    const [courses, setCourses] = useState([{key:1, value:'פיתוח web'},{key:2, value:'הדרכה'},{key:3, value:'שיווק'}]);
+    const [selectedCourses, setSelectedCourses] = useState([1,2]);
 
     useEffect(() => {
         async function getReports(){
@@ -95,6 +98,11 @@ const HoursApprovePage = (props) => {
         return <Redirect to='/' />
     }
 
+    function handleSelection(selectedOptionsObjects, option, isAdded) {
+        const selectedOptions = selectedOptionsObjects.map(option => option.key);
+        setSelectedCourses(selectedOptions);
+    }
+
     return (
         <div className="p-hours-approve">
             <PortalNavbar handleLogout={handleLogout}/>
@@ -103,6 +111,8 @@ const HoursApprovePage = (props) => {
                 <PortalSearchPager placeholder='חיפוש עובד' handleSearch={setFilter} pagesNumber={Math.ceil(filteredData.length / 15)} 
                     currentPage={page} pageChange={setPage}/>
             </div>
+            <PortalMultipleSelect title='פרויקטים' options={courses} 
+                selectedOptions={selectedCourses} handleSelection={handleSelection}/>
             <Accordion>
                 {employeesView}
             </Accordion>
