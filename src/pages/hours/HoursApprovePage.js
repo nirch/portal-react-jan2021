@@ -78,7 +78,7 @@ const HoursApprovePage = (props) => {
             <PortalNavbar handleLogout={handleLogout}/>
             <h1>אישור שעות</h1>
             <PortalDatePicker onlyMonth={true} handleDateSelection={onDateChange} date={{year, month, day}}/>
-            <PortalSearchPager placeholder='חיפוש עובד' />
+            <div className='search-wrapper'><PortalSearchPager placeholder='חיפוש עובד' /></div>
             <Accordion>
                 {employeesView}
             </Accordion>
