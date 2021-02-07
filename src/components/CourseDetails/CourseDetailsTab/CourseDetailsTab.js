@@ -13,11 +13,13 @@ import PortalDatePicker from "../../portalDatePicker/PortalDatePicker";
 function CourseDetailsTab(props)
 {
     
-    const [course,setCourse]=useState(null);
+    const [course,setCourse]=useState(props.courseDetails);
     const [projects,setProjects]=useState([]);
     const [currentProj,setCurrentProj]=useState("");
     const [currentDate,setCurrentDate]=useState (null);
+    const [cities,setCities]=useState([]);
     const [city,setCity]=useState("");
+    
     let  {id}  = useParams( );
     const activeUser = useContext(ActiveUserContext);
     console.log ("props",props.courseDetails);
@@ -40,7 +42,7 @@ function CourseDetailsTab(props)
             } 
             else {
                 console.log("Success ",res.data);
-                setCity(res.data);
+                setCities(res.data);
             }
         }, err => {
             console.error(err);
@@ -107,7 +109,7 @@ function CourseDetailsTab(props)
        placeholder={course?course.subnameinarabic:""} value={course?course.subnameinarabic:""} handleChange={stub}/>
 
        const portalProjectsSelect =<PortalSelect handleSelection={changeCurrentProj} optionsKey={currentProj} options={projects.map( project=> project.projectname)}/>
-       const portalCitiesSelect =<PortalSelect optionsKey={city}  handleSelection={setCityCallback} options={city}/>
+       const portalCitiesSelect =<PortalSelect optionsKey={city}  handleSelection={setCityCallback} options={cities.map( c=> c.name)}/>
        const portalDate= <PortalDatePicker  date={currentDate} 
        handleDateSelection={setDateCallback} />
        return (
@@ -120,7 +122,7 @@ function CourseDetailsTab(props)
         <div>תאריך לידה</div>
         {portalDate}
         <div>עיר</div>
-        {/*city?portalCitiesSelect:""*/}
+        {cities?portalCitiesSelect:""}
     </div>);
 }
 export default CourseDetailsTab;
