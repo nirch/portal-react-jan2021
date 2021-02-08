@@ -24,6 +24,7 @@ function CourseDetailsTab(props)
     const [budgets,setBugdets]=useState([]);
     const [bugdet,setBugdet]=useState("");
     const [projectTages,setProjectTages]=useState([]);
+    const [projectCurrentTages,setProjectCurrentTages]=useState([]);
     let  {id}  = useParams( );
     const activeUser = useContext(ActiveUserContext);
     console.log ("props",props.courseDetails);
@@ -130,6 +131,12 @@ function CourseDetailsTab(props)
             console.error(err);
         })
     }
+    function tagsOperation(selectedOptionsObjects,options,isAdded)
+    {
+      
+            setProjectCurrentTages(selectedOptionsObjects.map (tag=> tag.key ));
+      
+    }
     useEffect(() => {
         getCourseDetails();
         getCities();
@@ -149,7 +156,9 @@ function CourseDetailsTab(props)
        const portalCitiesSelect =<PortalSelect title="עיר" optionsKey={city}  handleSelection={setCityCallback} options={cities.map( c=> c.name)}/>
       
        const portalBudget= <PortalSelect  title="תקציב" handleSelection={changeCurrentBudget} optionsKey={bugdet} options={budgets.map( c=> c.year)}/>
-       const portalTages =<PortalMultipleSelect title="תגיות"/>
+       const portalTages =<PortalMultipleSelect title="תגיות" 
+       options={projectTages.map (tag =>  { return {"key":tag.projecttagid,"value":tag.projecttagname}})} 
+       selectedOptions={projectCurrentTages.map (tag => tag.projecttagid )} handleSelection={tagsOperation} />
        return (
     
     <div className="course-details-tab-main">
@@ -182,6 +191,11 @@ function CourseDetailsTab(props)
                 {budgets?portalBudget:""} 
             </Col>
         </Row>
+      {/*<Row>
+            <Col>
+            {projectTages?portalTages:""}
+            </Col>
+      </Row>  */}
        </Container>
     </div>);
 }

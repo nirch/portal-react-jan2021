@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import './users.css'
 import PortalNavbar from '../../components/navbar/PortalNavbar';
 import ActiveUserContext from '../../shared/activeUserContext'
-import { Redirect, useLocation } from 'react-router-dom'
+import { Redirect, useHistory, useLocation } from 'react-router-dom'
 import PortalSearchPager from '../../components/PortalSearchPager/PortalSearchPager';
 import PortalTable from '../../components/PortalTable/PortalTable';
 import PortalButtonSet from '../../components/portalButtonSet/PortalButtonSet';
@@ -29,6 +29,7 @@ const UsersPage = (props) => {
     const [pages, setPages] = useState(null);
     const [selectedRow, setSelectedRow] = useState(null);
     const [loading, setLoading] = useState(true);
+    const history = useHistory();
   
    // console.log(options[location.search.split('=')[1]]);
 
@@ -52,7 +53,7 @@ const UsersPage = (props) => {
      
     useEffect(() => {
         setPageNumber(0);
-    
+        history.push("/users/" + location.search);
     }, [location]);
 
     const headers = [{ key: "firstname", header: "שם" }, { key: "lastname", header: "שם משפחה" }, { key: "email", header: "אימייל" }];

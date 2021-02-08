@@ -7,7 +7,7 @@ import SaveImage from "../../assets/images/noun_save_2429243.png";
 import CopyImage from "../../assets/images/noun_copy_573715.png";
 import BackArrow from "../../assets/images/noun_back_arrow_2690272.png";
 import ProfileIcon from "../../assets/images/profile_icon.png";
-import { Redirect, useParams } from 'react-router-dom'
+import { Redirect, useHistory, useParams } from 'react-router-dom'
 import server from '../../shared/server';
 import PortalTabView from '../../components/portalTabView/PortalTabView';
 import UserProfileTab from '../../components/UserDetails/UserProfileTab';
@@ -21,7 +21,7 @@ const UserDetailsPage = (props) => {
     const { id } = useParams();
     const [userDetails, setUserDetails] = useState(null);
     const activeUser = useContext(ActiveUserContext);
-    const [redirectToUsers, setRedirectToUsersPage]= useState(false);
+    const history = useHistory();
 
     const imgsDomain = Enums.imgsDomain;
 
@@ -39,20 +39,15 @@ const UserDetailsPage = (props) => {
         return <Redirect to='/' />
     }
 
-    const tabs = [{ "header": "פרופיל", "view": <UserProfileTab /> }, { "header": "קורסים", "view": <UserCoursesTab /> }, { "header": "עובדים", "view": <UserEmployeesTab /> }, { "header": "דיווח", "view": <UserReportsTab /> }]
+    const tabs = userDetails && [{ "header": "פרופיל", "view": <UserProfileTab userProfile={userDetails}/> }, { "header": "קורסים", "view": <UserCoursesTab /> }, { "header": "עובדים", "view": <UserEmployeesTab /> }, { "header": "דיווח", "view": <UserReportsTab /> }]
 
     const getRegisterDate = (inputDate) => {
         const res = inputDate.split(" ");
         return res[1] + " " + res[0];
     }
 
-    if (redirectToUsers) {
-        return <Redirect to='/users' />
-    }
-
     function redirectToUsersPage(){
-        setRedirectToUsersPage(true);
-    
+        history.goBack();
     }
 
     return (
@@ -79,7 +74,7 @@ const UserDetailsPage = (props) => {
                 </div>
                 : ""}
             <div className="tabs-container">
-                <PortalTabView tabs={tabs}></PortalTabView>
+                {tabs && <PortalTabView tabs={tabs}></PortalTabView>}
             </div>
         </div>
     );
