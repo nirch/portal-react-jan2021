@@ -1,26 +1,31 @@
 {
   "files": {
-    "main.css": "/portal-react-jan2021/static/css/main.92029e72.chunk.css",
-    "main.js": "/portal-react-jan2021/static/js/main.548d18d2.chunk.js",
-    "main.js.map": "/portal-react-jan2021/static/js/main.548d18d2.chunk.js.map",
-    "runtime-main.js": "/portal-react-jan2021/static/js/runtime-main.85606531.js",
-    "runtime-main.js.map": "/portal-react-jan2021/static/js/runtime-main.85606531.js.map",
+    "main.css": "/portal-react-jan2021/static/css/main.08d0a6cb.chunk.css",
+    "main.js": "/portal-react-jan2021/static/js/main.a821a9e4.chunk.js",
+    "main.js.map": "/portal-react-jan2021/static/js/main.a821a9e4.chunk.js.map",
+    "runtime-main.js": "/portal-react-jan2021/static/js/runtime-main.a4dc61ed.js",
+    "runtime-main.js.map": "/portal-react-jan2021/static/js/runtime-main.a4dc61ed.js.map",
     "static/css/2.150d169a.chunk.css": "/portal-react-jan2021/static/css/2.150d169a.chunk.css",
-    "static/js/2.c5ce9546.chunk.js": "/portal-react-jan2021/static/js/2.c5ce9546.chunk.js",
-    "static/js/2.c5ce9546.chunk.js.map": "/portal-react-jan2021/static/js/2.c5ce9546.chunk.js.map",
-    "static/js/3.2e7eae40.chunk.js": "/portal-react-jan2021/static/js/3.2e7eae40.chunk.js",
-    "static/js/3.2e7eae40.chunk.js.map": "/portal-react-jan2021/static/js/3.2e7eae40.chunk.js.map",
+    "static/js/2.2da7096e.chunk.js": "/portal-react-jan2021/static/js/2.2da7096e.chunk.js",
+    "static/js/2.2da7096e.chunk.js.map": "/portal-react-jan2021/static/js/2.2da7096e.chunk.js.map",
+    "static/js/3.0747a205.chunk.js": "/portal-react-jan2021/static/js/3.0747a205.chunk.js",
+    "static/js/3.0747a205.chunk.js.map": "/portal-react-jan2021/static/js/3.0747a205.chunk.js.map",
     "index.html": "/portal-react-jan2021/index.html",
     "static/css/2.150d169a.chunk.css.map": "/portal-react-jan2021/static/css/2.150d169a.chunk.css.map",
-    "static/css/main.92029e72.chunk.css.map": "/portal-react-jan2021/static/css/main.92029e72.chunk.css.map",
-    "static/js/2.c5ce9546.chunk.js.LICENSE.txt": "/portal-react-jan2021/static/js/2.c5ce9546.chunk.js.LICENSE.txt",
-    "static/media/index.css": "/portal-react-jan2021/static/media/Assistant-SemiBold.0f0d4410.ttf"
+    "static/css/main.08d0a6cb.chunk.css.map": "/portal-react-jan2021/static/css/main.08d0a6cb.chunk.css.map",
+    "static/js/2.2da7096e.chunk.js.LICENSE.txt": "/portal-react-jan2021/static/js/2.2da7096e.chunk.js.LICENSE.txt",
+    "static/media/01.94b2793c.svg": "/portal-react-jan2021/static/media/01.94b2793c.svg",
+    "static/media/index.css": "/portal-react-jan2021/static/media/Assistant-SemiBold.0f0d4410.ttf",
+    "static/media/err.14f1e28d.svg": "/portal-react-jan2021/static/media/err.14f1e28d.svg",
+    "static/media/noun_back_arrow_2690272.3a8c6037.svg": "/portal-react-jan2021/static/media/noun_back_arrow_2690272.3a8c6037.svg",
+    "static/media/noun_copy_573715.47e7f564.svg": "/portal-react-jan2021/static/media/noun_copy_573715.47e7f564.svg",
+    "static/media/noun_save_2429243.159c3902.svg": "/portal-react-jan2021/static/media/noun_save_2429243.159c3902.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.85606531.js",
+    "static/js/runtime-main.a4dc61ed.js",
     "static/css/2.150d169a.chunk.css",
-    "static/js/2.c5ce9546.chunk.js",
-    "static/css/main.92029e72.chunk.css",
-    "static/js/main.548d18d2.chunk.js"
+    "static/js/2.2da7096e.chunk.js",
+    "static/css/main.08d0a6cb.chunk.css",
+    "static/js/main.a821a9e4.chunk.js"
   ]
 }
