@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect } from 'react';
 import './users.css'
 import PortalNavbar from '../../components/navbar/PortalNavbar';
 import ActiveUserContext from '../../shared/activeUserContext'
-import { Redirect } from 'react-router-dom'
+import { Redirect, useLocation } from 'react-router-dom'
 import PortalSearchPager from '../../components/PortalSearchPager/PortalSearchPager';
 import PortalTable from '../../components/PortalTable/PortalTable';
 import PortalButtonSet from '../../components/portalButtonSet/PortalButtonSet';
@@ -15,31 +15,45 @@ const UsersPage = (props) => {
     const { handleLogout } = props;
     const activeUser = useContext(ActiveUserContext);
     const [users, setUsers] = useState([]);
+    
+    const location = useLocation();
+    const options ={students:"SearchStudentsUnderMe", employee : "SearchStaffUnderMe", new : "SearchNewUsers"};
+    const placeholderOptions ={students:"חיפוש חניכים", employee : "חופוש עובדים", new : " חיפוש עובדים חדשים"};
+    const buttonOptions ={students:"חניכים", employee : " עובדים", new : "  עובדים חדשים"};
     const buttons = [
-        { key: 1, label: "עובדים פעילים" },
+        { key: 1, label: buttonOptions[location.search.split('=')[1]] +" פעילים"},
         { key: 0, label: "לא פעילים" }];
     const [selectedButton, setSelectedButton] = useState(buttons[0]);
     const [searchText, setSearchText] = useState("");
     const [pageNumber, setPageNumber] = useState(0);
     const [pages, setPages] = useState(null);
     const [selectedRow, setSelectedRow] = useState(null);
+    const [loading, setLoading] = useState(true);
+  
+   // console.log(options[location.search.split('=')[1]]);
 
     useEffect(() => {
          async function fetchUsers() {
+            setLoading(true);
             const serverUsers = await server(activeUser, {
                 desc: false,
                 page: pageNumber,
                 search: searchText,
                 sorting: "userid",
                 userstatus: selectedButton.key
-            }, "SearchStaffUnderMe");
-           
+            }, options[location.search.split('=')[1]]);
+              
                  setUsers(serverUsers.data.users);
-                 setPages(serverUsers.data.pages)
+                 setPages(serverUsers.data.pages);
+                 setLoading(false);
         } 
         fetchUsers();
-    }, [pageNumber, searchText,selectedButton])
-
+    }, [pageNumber, searchText,selectedButton, location])
+     
+    useEffect(() => {
+        setPageNumber(0);
+    
+    }, [location]);
 
     const headers = [{ key: "firstname", header: "שם" }, { key: "lastname", header: "שם משפחה" }, { key: "email", header: "אימייל" }];
     //callback functions for search component
@@ -77,12 +91,19 @@ const UsersPage = (props) => {
         <div className="p-users">
             <PortalNavbar handleLogout={handleLogout} />
             <div className="p-user_search">
+            {loading ?
+            <div className="text-center content">
+                <div className="spinner-grow text-warning  spinner" role="status">
+                  
+                </div>
+            </div>
+             : 
                 <PortalSearchPager
-                    placeholder="חיפוש עובדים"
+                    placeholder={placeholderOptions[location.search.split('=')[1]]}
                     pagesNumber={pages}
                     currentPage={pageNumber+1}
                     handleSearch={handleSearch}
-                    pageChange={pageChange} />
+                    pageChange={pageChange} />}
 
             </div>
 
