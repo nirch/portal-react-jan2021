@@ -39,7 +39,7 @@ const UserDetailsPage = (props) => {
         return <Redirect to='/' />
     }
 
-    const tabs = [{ "header": "פרופיל", "view": <UserProfileTab /> }, { "header": "קורסים", "view": <UserCoursesTab /> }, { "header": "עובדים", "view": <UserEmployeesTab /> }, { "header": "דיווח", "view": <UserReportsTab /> }]
+    const tabs = userDetails && [{ "header": "פרופיל", "view": <UserProfileTab userProfile={userDetails}/> }, { "header": "קורסים", "view": <UserCoursesTab /> }, { "header": "עובדים", "view": <UserEmployeesTab /> }, { "header": "דיווח", "view": <UserReportsTab /> }]
 
     const getRegisterDate = (inputDate) => {
         const res = inputDate.split(" ");
@@ -79,7 +79,7 @@ const UserDetailsPage = (props) => {
                 </div>
                 : ""}
             <div className="tabs-container">
-                <PortalTabView tabs={tabs}></PortalTabView>
+                {tabs && <PortalTabView tabs={tabs}></PortalTabView>}
             </div>
         </div>
     );
