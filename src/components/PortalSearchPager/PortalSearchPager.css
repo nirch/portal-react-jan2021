@@ -24,9 +24,15 @@
   
   .p-paging {
     display: flex;
-    margin-left: 10px;
+    padding-left: 26px;
     align-items: center;
   }
   .p-paging > span{
       display: flex;
+  }
+
+  .p-input-pager_input::placeholder {
+    padding-right: 26px;
+    font-size: 20px;
+    color: #707070;
   }

@@ -1,0 +1,35 @@
+.p-course-details
+{
+    color:#5d5d5d;
+   
+}
+.p-course-details .p-course-header
+{
+    box-shadow: 0 5px 5px -5px #333;
+    margin-bottom: 49.8px;
+}
+.p-course-details .course-details-subname
+{
+    font-size:28px;
+    line-height:18px;
+    width: 164px;
+    font-weight: bold;
+}
+.p-course-details .course-details-full-name
+{
+    font-size:12px;
+    line-height: 6px;
+    padding-bottom: 12px;
+    margin: 36px 18px 18px 18px;
+}
+.p-course-details .p-course-wrapper
+{
+    display:flex;
+    justify-content: space-between;
+    margin:18px;
+}
+
+.p-course-details .p-course-images>:not(:last-child)
+{
+    margin-left:33.5px;
+}

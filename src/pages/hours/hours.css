@@ -59,3 +59,12 @@
    top: -25px;
    left: 10px;
 }
+
+.p-hours-approve .c-portal-date-picker{
+    box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.1);
+}
+
+.p-hours-approve .search-wrapper{
+    padding: 0 12px;
+    margin: 22px 0 20px 0;
+}

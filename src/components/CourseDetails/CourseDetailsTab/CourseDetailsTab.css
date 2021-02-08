@@ -1,0 +1,18 @@
+.course-details-tab-main
+{
+    margin-top:29.5px;
+    font-size:16px;
+}
+.course-details-tab-main .portal-select-all .portal-select-selector 
+{
+    font-size: 16px !important;
+}
+.course-details-tab-main .row 
+{
+    margin-top:13px;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.05);
+}
+.course-details-tab-main .portal-select-all
+{
+    font-size:16px !important;
+}
