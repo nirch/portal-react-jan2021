@@ -28,7 +28,7 @@ function CourseSyllabusTab(props)
 
                                                         return(
 
-                                                            <Accordion defaultActiveKey="0">
+                                                            <Accordion >
                                                             <Card>
                                                                 <Card.Header>
                                                                     <Accordion.Toggle as={Button} variant="link" eventKey="0">
@@ -46,7 +46,7 @@ function CourseSyllabusTab(props)
                             console.log(subSubjectsLevel2);
                             return (
                                     <>
-                                       <Accordion defaultActiveKey="0">
+                                       <Accordion>
                                             <Card>
                                                 <Card.Header>
                                                     <Accordion.Toggle as={Button} variant="link" eventKey="0">
