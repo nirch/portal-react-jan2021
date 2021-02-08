@@ -1,0 +1,61 @@
+.p-hours-report {
+    font-size: 0.75rem;
+    font-family: Assistant-Regular;
+}
+
+.p-hours-report .table-hdr {
+   text-align: center;
+   font-weight: bold;
+}
+
+.p-hours-report .margin {
+   margin-top: 6px;
+   margin-bottom: 6px;
+   padding: 6px 0 6px 0;
+}
+
+.p-hours-report .waiting {
+   background-color: #ffd300;
+}
+
+.p-hours-report .approved {
+    background-color: #a1d47f;
+ }
+
+ .p-hours-report .rejected {
+    background-color: #ffa1a1;
+ }
+
+ .p-hours-report .center {
+   text-align: center;
+   padding-bottom: 15px;
+   font-size: 12px;
+   font-family: Assistant-Regular;
+   line-height: 0.6;
+   box-shadow: 0px 3px 3px 0px rgba(0,0,0,0.1);
+}
+
+.p-hours-report .footer {
+   position: fixed;
+   bottom: 0;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+}
+
+.p-hours-report .circle {
+   position: relative;
+   width: 51px;
+   height: 51px;
+   background-color: #5d5d5d;
+   border-radius: 50%;
+   color: #ffffff;
+   font-size: 4rem;
+   margin: 10px;
+}
+
+.p-hours-report .circle-plus {
+   position: absolute;
+   top: -25px;
+   left: 10px;
+}

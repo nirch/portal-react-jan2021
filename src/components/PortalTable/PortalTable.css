@@ -8,6 +8,9 @@
 
 .c-table.no-border tr td, .c-table.no-border tr th{
     border: none;
+    padding-left: 0.25rem; 
+    padding-right: 0.5rem; 
+    max-width: 200px;
   }
 
 .c-table.no-border tr th{
