@@ -9,6 +9,7 @@ import React, { useContext } from 'react';
 import server from '../../../shared/server';
 import "./CourseDetailsTab.css";
 import PortalDatePicker from "../../portalDatePicker/PortalDatePicker";
+import { Col, Container, Row } from "react-bootstrap";
 
 function CourseDetailsTab(props)
 {
@@ -16,10 +17,12 @@ function CourseDetailsTab(props)
     const [course,setCourse]=useState(props.courseDetails);
     const [projects,setProjects]=useState([]);
     const [currentProj,setCurrentProj]=useState("");
-    const [currentDate,setCurrentDate]=useState (null);
+   // const [currentDate,setCurrentDate]=useState (null);
     const [cities,setCities]=useState([]);
     const [city,setCity]=useState("");
-    
+    const [budgets,setBugdets]=useState([]);
+    const [bugdet,setBugdet]=useState("");
+    const [projectTage,setProjectTages]=useState([]);
     let  {id}  = useParams( );
     const activeUser = useContext(ActiveUserContext);
     console.log ("props",props.courseDetails);
@@ -49,10 +52,10 @@ function CourseDetailsTab(props)
         })
     }
    
-    function setDateCallback(e)
+   /* function setDateCallback(e)
     {
          setCurrentDate({ "day": e.day, "month": e.month, "year": e.year }); 
-    }
+    }*/
 
     function getCourseDetails()
     {
@@ -91,13 +94,38 @@ function CourseDetailsTab(props)
     }
     function changeCurrentProj(e)
     {
-        setCurrentProj(e.target.value);
+       let a=projects.map( project=> project.projecttags);
+       console.log ("aa",a[currentProj]);
+       
+       setCurrentProj(e.target.value);
+    }
+    function changeCurrentBudget(e)
+    {
+        setBugdet(e.target.value);
+    }
+    function getBudgets()
+    {
+        const data={yearbudgetid:id};
+        server(activeUser, data, "GetActiveYearsBudget").then(res => {
+            console.log(res);
+            if (res.error) 
+            {
+               console.log("error ",res.error);
+            } 
+            else {
+                console.log("Success ",res);
+                setBugdets(res.data);
+             
+            }
+        }, err => {
+            console.error(err);
+        })
     }
     useEffect(() => {
         getCourseDetails();
         getCities();
         getProjects();
-
+        getBudgets();
       },[]);
       const courseFullName=  <PortalInput title="שם קורס מלא"
        placeholder={course?course.name:""} value={course?course.name:""} handleChange={stub}/>
@@ -108,21 +136,43 @@ function CourseDetailsTab(props)
        const courseSubNameArab=  <PortalInput title=" שם קורס מקוצר בערבית"
        placeholder={course?course.subnameinarabic:""} value={course?course.subnameinarabic:""} handleChange={stub}/>
 
-       const portalProjectsSelect =<PortalSelect handleSelection={changeCurrentProj} optionsKey={currentProj} options={projects.map( project=> project.projectname)}/>
-       const portalCitiesSelect =<PortalSelect optionsKey={city}  handleSelection={setCityCallback} options={cities.map( c=> c.name)}/>
-       const portalDate= <PortalDatePicker  date={currentDate} 
-       handleDateSelection={setDateCallback} />
+       const portalProjectsSelect =<PortalSelect title="פרויקט" handleSelection={changeCurrentProj} optionsKey={currentProj} options={projects.map( project=> project.projectname)}/>
+       const portalCitiesSelect =<PortalSelect title="עיר" optionsKey={city}  handleSelection={setCityCallback} options={cities.map( c=> c.name)}/>
+      
+       const portalBudget= <PortalSelect  title="תקציב" handleSelection={changeCurrentBudget} optionsKey={bugdet} options={budgets.map( c=> c.year)}/>
        return (
     
     <div className="course-details-tab-main">
-        {course ? courseFullName:""}
-        {course ? courseSubName:""}
-        {course ? courseSubNameArab:""}
-        {projects?portalProjectsSelect:""}
-        <div>תאריך לידה</div>
-        {portalDate}
-        <div>עיר</div>
-        {cities?portalCitiesSelect:""}
+        <Container>
+        <Row>
+            <Col>
+                {course ? courseFullName:""}
+            </Col>
+        </Row>
+        <Row>
+            <Col >
+                {course ? courseSubName:""}
+            </Col>
+            <Col >
+                {course ? courseSubNameArab:""}
+            </Col>
+        </Row>
+        <Row>
+            <Col  >
+            {projects?portalProjectsSelect:""}
+            </Col>
+        </Row>
+        <Row >  
+           
+            <Col >
+                {cities?portalCitiesSelect:""}
+           </Col>
+           
+           <Col >
+                {budgets?portalBudget:""} 
+            </Col>
+        </Row>
+       </Container>
     </div>);
 }
 export default CourseDetailsTab;
