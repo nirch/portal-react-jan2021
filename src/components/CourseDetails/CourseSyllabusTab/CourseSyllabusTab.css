@@ -1,4 +1,7 @@
 
+.c-syllabus{
+    position: relative;
+}
 .c-syllabus .card{
     border: none;
 }
@@ -15,4 +18,17 @@
     margin-right:40px; 
     font-family: Assistant-Regular;
     font-size: 13px;
+}
+
+.c-syllabus .collapseButton {
+    color: #5d5d5d;
+    /* position:absolute;
+    top: 3%;
+    right: 78%; */
+    /* z-index: 999; */
+    margin:3% 3% 0 0 ;
+}
+
+.c-syllabus .syllabusData{
+    margin-top:5% ;
 }

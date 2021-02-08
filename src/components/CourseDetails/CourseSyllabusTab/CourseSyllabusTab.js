@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Accordion, Card ,Button} from "react-bootstrap";
 import "./CourseSyllabusTab.css"
 
@@ -5,6 +6,7 @@ function CourseSyllabusTab(props)
 {
     
     const {courseDetails} = props;
+    const [collapse, setCollapse]= useState("1");
     
     let syllabus="";
     let syllabusSub="";
@@ -28,7 +30,7 @@ function CourseSyllabusTab(props)
 
                                                         return(
 
-                                                            <Accordion >
+                                                            <Accordion activeKey={collapse}>
                                                             <Card>
                                                                 <Card.Header>
                                                                     <Accordion.Toggle as={Button} variant="link" eventKey="0">
@@ -45,8 +47,8 @@ function CourseSyllabusTab(props)
 
                             console.log(subSubjectsLevel2);
                             return (
-                                    <>
-                                       <Accordion>
+                             <div>
+                                       <Accordion activeKey={collapse}> 
                                             <Card>
                                                 <Card.Header>
                                                     <Accordion.Toggle as={Button} variant="link" eventKey="0">
@@ -55,11 +57,12 @@ function CourseSyllabusTab(props)
                                                 </Card.Header>
                                                 <Accordion.Collapse eventKey="0">
                                                     <Card.Body>{subSubjectsLevel2}</Card.Body>
-                                                </Accordion.Collapse>
+                                                </Accordion.Collapse> 
                                             </Card>
-                                          
-                                            </Accordion>
-                                    </>
+                                        </Accordion>
+                                   
+                                </div> 
+                                    
                                         
                                     
                                     )
@@ -70,9 +73,21 @@ function CourseSyllabusTab(props)
     }
 
 
+    function ExpandCollapse (){
+        // debugger;
+        if (collapse=="1"){
+            setCollapse("0");
+            // debugger;
+        } else (setCollapse("1"))
+    }
+
     return (
         <div className="c-syllabus">
-            {syllabusToPresent}
+           {collapse=== "1"? <Button className="collapseButton" variant="light" onClick={ExpandCollapse}> הרחב הכל</Button>: <Button className="collapseButton" variant="light" onClick={ExpandCollapse}> כווץ הכל</Button>} 
+           <div className="syllabusData">
+           {syllabusToPresent}
+           </div>
+            
         </div>
     );
 }
