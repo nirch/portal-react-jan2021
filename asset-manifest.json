@@ -1,19 +1,19 @@
 {
   "files": {
     "main.css": "/portal-react-jan2021/static/css/main.08d0a6cb.chunk.css",
-    "main.js": "/portal-react-jan2021/static/js/main.d2b31698.chunk.js",
-    "main.js.map": "/portal-react-jan2021/static/js/main.d2b31698.chunk.js.map",
+    "main.js": "/portal-react-jan2021/static/js/main.e6a9b232.chunk.js",
+    "main.js.map": "/portal-react-jan2021/static/js/main.e6a9b232.chunk.js.map",
     "runtime-main.js": "/portal-react-jan2021/static/js/runtime-main.a4dc61ed.js",
     "runtime-main.js.map": "/portal-react-jan2021/static/js/runtime-main.a4dc61ed.js.map",
     "static/css/2.150d169a.chunk.css": "/portal-react-jan2021/static/css/2.150d169a.chunk.css",
-    "static/js/2.2da7096e.chunk.js": "/portal-react-jan2021/static/js/2.2da7096e.chunk.js",
-    "static/js/2.2da7096e.chunk.js.map": "/portal-react-jan2021/static/js/2.2da7096e.chunk.js.map",
+    "static/js/2.0eb78846.chunk.js": "/portal-react-jan2021/static/js/2.0eb78846.chunk.js",
+    "static/js/2.0eb78846.chunk.js.map": "/portal-react-jan2021/static/js/2.0eb78846.chunk.js.map",
     "static/js/3.0747a205.chunk.js": "/portal-react-jan2021/static/js/3.0747a205.chunk.js",
     "static/js/3.0747a205.chunk.js.map": "/portal-react-jan2021/static/js/3.0747a205.chunk.js.map",
     "index.html": "/portal-react-jan2021/index.html",
     "static/css/2.150d169a.chunk.css.map": "/portal-react-jan2021/static/css/2.150d169a.chunk.css.map",
     "static/css/main.08d0a6cb.chunk.css.map": "/portal-react-jan2021/static/css/main.08d0a6cb.chunk.css.map",
-    "static/js/2.2da7096e.chunk.js.LICENSE.txt": "/portal-react-jan2021/static/js/2.2da7096e.chunk.js.LICENSE.txt",
+    "static/js/2.0eb78846.chunk.js.LICENSE.txt": "/portal-react-jan2021/static/js/2.0eb78846.chunk.js.LICENSE.txt",
     "static/media/01.94b2793c.svg": "/portal-react-jan2021/static/media/01.94b2793c.svg",
     "static/media/index.css": "/portal-react-jan2021/static/media/Assistant-SemiBold.0f0d4410.ttf",
     "static/media/err.14f1e28d.svg": "/portal-react-jan2021/static/media/err.14f1e28d.svg",
@@ -24,8 +24,8 @@
   "entrypoints": [
     "static/js/runtime-main.a4dc61ed.js",
     "static/css/2.150d169a.chunk.css",
-    "static/js/2.2da7096e.chunk.js",
+    "static/js/2.0eb78846.chunk.js",
     "static/css/main.08d0a6cb.chunk.css",
-    "static/js/main.d2b31698.chunk.js"
+    "static/js/main.e6a9b232.chunk.js"
   ]
 }
