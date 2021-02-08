@@ -6,9 +6,8 @@ margin:  25px 12px;
 }
 .p-users-buttons{
     position: fixed;
-    left: 0;
     bottom: 0;
+    left: 0;
     width: 100%;
-    z-index: 1;
     background-color: #ffffff;
 }
