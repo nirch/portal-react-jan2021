@@ -65,7 +65,7 @@ const CourseDetailsPage = (props) => {
     return (
         <div className="p-course-details">
             <div className="p-course-header">
-            <PortalNavbar handleLogout={handleLogout}/>
+            <PortalNavbar handleLogout={handleLogout} haedline="קורסים"/>
             <div className="p-course-wrapper">
              {course? subName:""}
              <div className="p-course-images">

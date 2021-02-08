@@ -85,12 +85,12 @@ const UsersPage = (props) => {
 
     if (selectedRow)
     {
-        return <Redirect to= {`/users/${selectedRow.userid}`}/>
+        return <Redirect to= {`/users/${selectedRow.userid}${location.search}`}/>
     }
 
     return (
         <div className="p-users">
-            <PortalNavbar handleLogout={handleLogout} />
+            <PortalNavbar handleLogout={handleLogout} haedline={buttonOptions[location.search.split('=')[1]]}/>
             <div className="p-user_search">
             {loading ?
             <div className="text-center content">

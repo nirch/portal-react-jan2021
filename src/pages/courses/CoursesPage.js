@@ -63,7 +63,7 @@ const CoursesPage = (props) => {
 
     return (
         <div className="p-courses">
-            <PortalNavbar handleLogout={handleLogout} headLine="קורסים"/>
+            <PortalNavbar handleLogout={handleLogout} haedline="קורסים"/>
             <div className="search">
                 <PortalSearchPager placeholder="חיפוש קורס"  pagesNumber={pagesNumber} currentPage={currentPage+1} handleSearch={handleSearch} pageChange={handlePageChange} />
             </div>

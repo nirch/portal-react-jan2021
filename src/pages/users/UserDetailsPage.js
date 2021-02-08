@@ -7,7 +7,7 @@ import SaveImage from "../../assets/images/noun_save_2429243.png";
 import CopyImage from "../../assets/images/noun_copy_573715.png";
 import BackArrow from "../../assets/images/noun_back_arrow_2690272.png";
 import ProfileIcon from "../../assets/images/profile_icon.png";
-import { Redirect, useHistory, useParams } from 'react-router-dom'
+import { Redirect, useHistory, useLocation, useParams } from 'react-router-dom'
 import server from '../../shared/server';
 import PortalTabView from '../../components/portalTabView/PortalTabView';
 import UserProfileTab from '../../components/UserDetails/UserProfileTab';
@@ -22,6 +22,8 @@ const UserDetailsPage = (props) => {
     const [userDetails, setUserDetails] = useState(null);
     const activeUser = useContext(ActiveUserContext);
     const history = useHistory();
+    const location = useLocation();
+    const headlineOptions ={students:"חניכים", employee : "עובדים", new : "עובדים חדשים"};
 
     const imgsDomain = Enums.imgsDomain;
 
@@ -52,7 +54,7 @@ const UserDetailsPage = (props) => {
 
     return (
         <div className="p-user-details">
-            <PortalNavbar handleLogout={handleLogout} haedline="עובדים" back={redirectToUsersPage} />
+            <PortalNavbar handleLogout={handleLogout} haedline={headlineOptions[location.search.split('=')[1]]} back={redirectToUsersPage} />
             { userDetails ?
                 <div className="root">
                     <div className="right-root">
