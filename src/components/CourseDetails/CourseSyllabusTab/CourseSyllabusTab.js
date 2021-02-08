@@ -18,7 +18,7 @@ function CourseSyllabusTab(props)
 
         syllabusToPresent= syllabus.map(function (syllabusSubject,index) {
                             const subSubjects = syllabusSubject.subsubjects;
-                            console.log(subSubjects[0].subject);        
+                            // console.log(subSubjects[0].subject);        
                             const subSubjectsToPrint = subSubjects.map ((subSubject,index)=> <p key={index}>{subSubject.subject} </p>)
                             console.log(subSubjectsToPrint);
                             return (
@@ -48,7 +48,7 @@ function CourseSyllabusTab(props)
 
 
     return (
-        <div>
+        <div className="c-syllabus">
             {syllabusToPresent}
         </div>
     );
