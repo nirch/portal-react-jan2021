@@ -70,7 +70,7 @@ const CoursesPage = (props) => {
             {loading ?
             <div className="text-center content">
                 <div className="spinner-grow text-warning  spinner" role="status">
-                    <span className="visually-hidden">Loading...</span>
+                    <span className="visually-hidden"></span>
                 </div>
             </div>
              : 
