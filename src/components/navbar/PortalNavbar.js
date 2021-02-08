@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Navbar, Nav, Row, Col } from 'react-bootstrap'
 import logo from '../../assets/images/logo.png';
 import profileIcon from '../../assets/images/profile_icon.png';
@@ -9,6 +9,7 @@ import hoursAprove from '../../assets/images/hoursAprove.png';
 import logout from '../../assets/images/logout.png';
 import arrow_down from '../../assets/images/arrow_down.png';
 import arrow_up from '../../assets/images/arrow_up.png';
+import ActiveUserContext from '../../shared/activeUserContext';
 
 import './navbar.css'
 
@@ -16,8 +17,10 @@ const PortalNavbar = (props) => {
     const { handleLogout, haedline, back } = props;
 	const [sidebarOpen, setSidebarOpen] = useState(false);
 	const [usersTabOpen, setUsersTabOpen] = useState(false);
+	const activeUser = useContext(ActiveUserContext);
 	
-   
+	const name= activeUser.firstname+ " "+ activeUser.lastname;
+	
     let sidebar= "";
     if (sidebarOpen){
         sidebar= "sidebar-open";
@@ -32,19 +35,23 @@ const PortalNavbar = (props) => {
     if (usersTabOpen){
         usersTabToggle= "usersTab-open";
 	}
+	
 
     return (
 <div className="c-navbar">
 	<div className={sidebar}>
 		<Row className="haedlineRow">
-			<Col className="hamburger" onClick={() => setSidebarOpen(true)}>
+			{back? <div className="arrow">
+				<span onClick={() => back()}>&#10132;</span>
+			</div> :
+			<div className="hamburger" onClick={() => setSidebarOpen(true)}>
 				<div ></div>
 				<div></div>
 				<div></div>
-			</Col>
-			<Col className="haedline">
+			</div>}
+			<div className="haedline">
 				<p>{haedline}</p>
-			</Col>
+			</div>
 		
 		</Row>
 	
@@ -61,11 +68,11 @@ const PortalNavbar = (props) => {
 				</div>
 				<Row className="profile-preview">
 					<Col className="profile-image">
-					<img   src={profileIcon}></img>
+					{activeUser.image? <img src={activeUser.image}></img> : <img src={profileIcon}></img>}
 					</Col>
 					<Col className="name-wrap">
 							<span className="user-name">
-								שם
+								<p>{name}</p>
 							</span>
 					</Col>
 				</Row>
