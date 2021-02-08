@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import ActiveUserContext from '../../shared/activeUserContext';
 import server from '../../shared/server';
 import PortalInput from '../PortalInput/PortalInput';
 import PortalMultipleSelect from '../PortalMultipleSelect/PortalMultipleSelect';
@@ -6,6 +7,7 @@ import PortalSelect from '../PortalSelect/PortalSelect'
 import './UserProfileTab.css'
 
 function UserProfileTab({userProfile}){
+    const activeUser = useContext(ActiveUserContext);
     const [firstname, setFirstname] = useState(userProfile.firstname)
     const [lastname, setLastname] = useState(userProfile.lastname)
     const [firstnameinarabic, setFirstnameinarabic] = useState(userProfile.firstnameinarabic);
@@ -24,95 +26,72 @@ function UserProfileTab({userProfile}){
     const [approverIds, setApproverIds] = useState(userProfile.approverIds);
     const [languages, setLanguages] = useState(userProfile.languages);
     const [projects, setProjects] = useState(userProfile.projects);
-    const [] = useState('');
+    const [citys, setCitys] = useState('');
     const [] = useState('');
 
     useEffect(() => {
-        async function getUserProfile() {
-            // const res = await server(,{userId},'GetUserProfileById')
+        async function getCitys(){
+            const res = await server(activeUser, {}, 'GetCities')
+            console.log(res);
+            if (res.status === 200) {
+                setCitys(res.data)
+            }
         }
-        getUserProfile();
-    },[]);
 
+        getCitys();
+    },[]);
+    
     return(
         <div className='c-user-profile-tab'>
             <div className='row'>
                 <div className='column'>
-                    <PortalInput title='שם פרטי בעברית' value={firstname} placeholder='שם פרטי בעברית'/>
+                    <PortalInput title='שם פרטי בעברית' value={firstname} placeholder='שם פרטי בעברית' handleChange={e => setFirstname(e.target.value)}/>
                 </div>
                 <div className='column'>
-                    <PortalInput title='שם משפחה בעברית' value={lastname} placeholder='שם משפחה בעברית'/>
-                </div>
-            </div>
-            <div className='row'>
-                <div className='column'>
-                    <PortalInput title='שם פרטי בערבית' value={firstnameinarabic} placeholder='שם פרטי בערבית'/>
-                </div>
-                <div className='column'>
-                    <PortalInput title='שם משפחה בערבית' value={lastnameinarabic} placeholder='שם משפחה בערבית'/>
-                </div>
-            </div>
-            <div className='row'>
-            <PortalInput title="מס' טלפון" value={phone}/>
-            </div>
-            <div className='row'>
-                <div className='column'>
-                    <PortalInput title="מס' טלפון נוסף" value={phone2}/>
-                </div>
-                <div className='column'>
-                    <PortalInput title='שייך ל' value={phone2owner}/>
+                    <PortalInput title='שם משפחה בעברית' value={lastname} placeholder='שם משפחה בעברית' handleChange={e => setLastname(e.target.value)}/>
                 </div>
             </div>
             <div className='row'>
                 <div className='column'>
-                    <PortalInput title='תאריך לידה' value={birthday}/>
+                    <PortalInput title='שם פרטי בערבית' value={firstnameinarabic} placeholder='שם פרטי בערבית' handleChange={e => setFirstnameinarabic(e.target.value)}/>
                 </div>
                 <div className='column'>
-                    <PortalInput title='מספר תעודת זהות' value={tznumber}/>
+                    <PortalInput title='שם משפחה בערבית' value={lastnameinarabic} placeholder='שם משפחה בערבית' handleChange={e => setLastnameinarabic(e.target.value)}/>
                 </div>
             </div>
             <div className='row'>
-                <div className='column'>
-                    {/* <PortalSelect title='עיר' options={[{key:'902', value:'תל אביב'}]} optionsKey={cityid}/> */}
-                </div>
-                <div className='column'>
-                    <PortalInput title='כתובת' value={address}/>
-                </div>
+            <PortalInput title="מס' טלפון" value={phone} handleChange={e => setPhone(e.target.value)}/>
             </div>
             <div className='row'>
                 <div className='column'>
-                    {/* <PortalSelect title='מגזר' options={[{key:'902', value:'תל אביב'}]} optionsKey={religionid}/> */}
+                    <PortalInput title="מס' טלפון נוסף" value={phone2} handleChange={e => setPhone2(e.target.value)}/>
                 </div>
                 <div className='column'>
-                    {/* <PortalSelect title='מגדר' options={[{key:'902', value:'תל אביב'}]} optionsKey={genderid}/> */}
+                    <PortalInput title='שייך ל' value={phone2owner} handleChange={e => setPhone2owner(e.target.value)}/>
                 </div>
             </div>
             <div className='row'>
-                <PortalInput title='אימייל' value={email}/>
+                <div className='column'>
+                    <PortalInput title='תאריך לידה' value={birthday} handleChange={e => setBirthday(e.target.value)}/>
+                </div>
+                <div className='column'>
+                    <PortalInput title='מספר תעודת זהות' value={tznumber} handleChange={e => setTznumber(e.target.value)}/>
+                </div>
             </div>
             <div className='row'>
-                <PortalInput title='מנהל ישיר' value={managerid}/>
+                <div className='column'>
+                    <PortalSelect title='עיר' options={citys ? citys.map(city => city.name) : []} optionsKey={cityid}/>
+                </div>
+                <div className='column'>
+                    <PortalInput title='כתובת' value={address} handleChange={e => setAddress(e.target.value)}/>
+                </div>
             </div>
             <div className='row'>
-                {/* <PortalMultipleSelect title='מאשרי שעות נוספים' options={[{key:'1', value:'שמעון'},{key:'2', value:'אברהם'},{key:'3', value:'יוסף'}]} 
-                    selectedOptions={approverIds}/> */}
+                <PortalInput title='אימייל' value={email} handleChange={e => setEmail(e.target.value)}/>
             </div>
             <div className='row'>
-                {/* <PortalMultipleSelect title='תעודות' options={[{key:'1', value:'שמעון'},{key:'2', value:'אברהם'},{key:'3', value:'יוסף'}]} 
-                    selectedOptions={approverIds}/> */}
-            </div>
-            <div className='row'>
-                {/* <PortalMultipleSelect title='תעודות בגרות' options={[{key:'1', value:'שמעון'},{key:'2', value:'אברהם'},{key:'3', value:'יוסף'}]} 
-                    selectedOptions={approverIds}/> */}
-            </div>
-            <div className='row'>
-                {/* <PortalMultipleSelect title='שפות' options={[{key:'1', value:'שמעון'},{key:'2', value:'אברהם'},{key:'3', value:'יוסף'}]} 
-                    selectedOptions={languages}/> */}
-                
-            </div>
-            <div className='row'>
-                {/* <PortalMultipleSelect title='פרויקטים' options={[{key:'1', value:'שמעון'},{key:'2', value:'אברהם'},{key:'3', value:'יוסף'}]} 
-                    selectedOptions={projects}/> */}
+                <PortalMultipleSelect title='מאשרי שעות נוספים' options={[{key:'1', value:'שמעון'},{key:'2', value:'אברהם'},{key:'3', value:'יוסף'}]} 
+                    selectedOptions={approverIds ? approverIds : []} handleSelection={(arr => {setApproverIds(arr.map(app => app.key))})}/>
             </div>
         </div>
     )
