@@ -1,0 +1,24 @@
+.c-user-profile-tab{
+    margin-top: 28.5px;
+}
+
+.c-user-profile-tab .row{
+    display: flex;
+    flex-wrap: wrap;
+    box-shadow: 0 1px 1px 0 rgba(0,0,0,0.05);
+    margin: 0 0 13px 0;
+    padding-top: 10px;
+}
+
+.c-user-profile-tab .row .column{
+    width: 50%;
+}
+
+.c-user-profile-tab .portal-input-title{
+    font-family: Assistant-semiBold;
+}
+
+.c-user-profile-tab .portal-input-text{
+    font-family: Assistant-light;
+    color: #5d5d5d;
+}
