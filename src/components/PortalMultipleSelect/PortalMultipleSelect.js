@@ -13,28 +13,27 @@ const PortalMultipleSelect = (props) => {
     const {title, options, selectedOptions, handleSelection} = props;
     const [showOptions, setShowOptions] = useState(false);
 
-    function onSelectionChange(option, isAdded){
+    function onSelectionChange(option, isAdded, index){
         const newSelectedOptions = [...selectedOptions];
         if (isAdded) {
-            !newSelectedOptions.includes(option.key) && newSelectedOptions.push(option.key);
+            newSelectedOptions.push(option.key);
             setShowOptions(false);
-            // what to do if there is no change?
         } else {
-            newSelectedOptions.splice(newSelectedOptions.indexOf(option.key),1);
+            newSelectedOptions.splice(index,1);
         }
         
-        const selectedOptionsObjects = newSelectedOptions.map(option => options[option-1]);
+        const selectedOptionsObjects = newSelectedOptions.map(optionKey => options.find(option => option.key === optionKey));
         handleSelection(selectedOptionsObjects, option, isAdded);
     }
 
-    const optionsView = options.map(option => 
+    const optionsView = options.filter(option => !selectedOptions.includes(option.key)).map(option => 
         <div className='option' onClick={() => {onSelectionChange(option, true)}}>
             {option.value}
         </div>
     );
     
-    const selectedOptionsView = selectedOptions && selectedOptions.map(option => 
-            <div className='selected-options' onClick={() => {onSelectionChange(options[option-1], false)}}>
+    const selectedOptionsView = selectedOptions && selectedOptions.map((option, index) => 
+            <div className='selected-options' onClick={() => {onSelectionChange(options[option-1], false, index)}}>
                 <div>{options[option-1].value}</div>
                 <div className='delete'><span>+</span></div>
             </div>
@@ -43,7 +42,9 @@ const PortalMultipleSelect = (props) => {
         <div className='c-portal-multiple-select'>
             <div className='title'>{title}</div>
             <div className='selections'>
-                <div className='selector' onClick={() => {setShowOptions(!showOptions)}}>+</div>
+                {optionsView.length > 0 && 
+                    <div className='selector' onClick={() => {setShowOptions(!showOptions)}}>+</div>
+                }
                 {selectedOptionsView}
             </div>
             {showOptions && <div className='options-view'>
