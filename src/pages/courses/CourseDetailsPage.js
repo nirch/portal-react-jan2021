@@ -19,6 +19,7 @@ const CourseDetailsPage = (props) => {
     const { handleLogout } = props;
     const activeUser = useContext(ActiveUserContext);
     const [course,setCourse]=useState(null);
+    const [redirectBack, setRedirectBack] = useState(false);
     let  {id}  = useParams( );
 
    
@@ -41,12 +42,17 @@ const CourseDetailsPage = (props) => {
         })
       },[]);
 
-      if (!activeUser) {
+    if (!activeUser) {
         return <Redirect to='/' />
     }
 
+    if (redirectBack) {
+        return <Redirect to='/courses' />
+    }
    
-
+    function goBack() {
+        setRedirectBack(true);
+    }
    
     const tabs =
      [{ "header": "קורס", "view": <CourseDetailsTab courseDetails={course} /> }, 
@@ -59,13 +65,13 @@ const CourseDetailsPage = (props) => {
 
     const subName= <div className="course-details-subname">{course?course.subname:""} </div>
     const fullName= <div className="course-details-full-name">{course?course.name:""} </div>
-  
-   
+
+
 
     return (
         <div className="p-course-details">
             <div className="p-course-header">
-            <PortalNavbar handleLogout={handleLogout} haedline="קורסים"/>
+            <PortalNavbar handleLogout={handleLogout} haedline="קורסים" back={goBack}/>
             <div className="p-course-wrapper">
              {course? subName:""}
              <div className="p-course-images">
