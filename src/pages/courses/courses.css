@@ -1,5 +1,7 @@
 .p-courses{
     position: relative;
+    font-size: 0.75rem;
+    font-family: Assistant-Regular;
 }
 
 .p-courses .footer {
@@ -11,7 +13,7 @@
   }
 
 .p-courses .search {
-    margin: 0 0.75rem;
+    margin: 1.75rem 0.75rem;
 }
 
 .p-courses .content {

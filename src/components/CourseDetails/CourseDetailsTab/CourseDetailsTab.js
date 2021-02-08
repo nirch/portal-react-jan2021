@@ -10,6 +10,7 @@ import server from '../../../shared/server';
 import "./CourseDetailsTab.css";
 import PortalDatePicker from "../../portalDatePicker/PortalDatePicker";
 import { Col, Container, Row } from "react-bootstrap";
+import PortalMultipleSelect from "../../PortalMultipleSelect/PortalMultipleSelect";
 
 function CourseDetailsTab(props)
 {
@@ -22,7 +23,8 @@ function CourseDetailsTab(props)
     const [city,setCity]=useState("");
     const [budgets,setBugdets]=useState([]);
     const [bugdet,setBugdet]=useState("");
-    const [projectTage,setProjectTages]=useState([]);
+    const [projectTages,setProjectTages]=useState([]);
+    const [projectCurrentTages,setProjectCurrentTages]=useState([]);
     let  {id}  = useParams( );
     const activeUser = useContext(ActiveUserContext);
     console.log ("props",props.courseDetails);
@@ -92,12 +94,20 @@ function CourseDetailsTab(props)
             console.error(err);
         })
     }
+
     function changeCurrentProj(e)
     {
-       let a=projects.map( project=> project.projecttags);
-       console.log ("aa",a[currentProj]);
-       
+    
+       for (let i=0;i<projects.length;++i)
+       {
+           if (projects[i].projectname===e.target.value)
+           {
+               console.log ("project tages",projects[i].projecttags);
+               setProjectTages(projects[i].projecttags);
+           }
+       } 
        setCurrentProj(e.target.value);
+       console.log ("project tagesssssss",projectTages);
     }
     function changeCurrentBudget(e)
     {
@@ -121,6 +131,12 @@ function CourseDetailsTab(props)
             console.error(err);
         })
     }
+    function tagsOperation(selectedOptionsObjects,options,isAdded)
+    {
+      
+            setProjectCurrentTages(selectedOptionsObjects.map (tag=> tag.key ));
+      
+    }
     useEffect(() => {
         getCourseDetails();
         getCities();
@@ -140,6 +156,9 @@ function CourseDetailsTab(props)
        const portalCitiesSelect =<PortalSelect title="עיר" optionsKey={city}  handleSelection={setCityCallback} options={cities.map( c=> c.name)}/>
       
        const portalBudget= <PortalSelect  title="תקציב" handleSelection={changeCurrentBudget} optionsKey={bugdet} options={budgets.map( c=> c.year)}/>
+       const portalTages =<PortalMultipleSelect title="תגיות" 
+       options={projectTages.map (tag =>  { return {"key":tag.projecttagid,"value":tag.projecttagname}})} 
+       selectedOptions={projectCurrentTages.map (tag => tag.projecttagid )} handleSelection={tagsOperation} />
        return (
     
     <div className="course-details-tab-main">
@@ -172,6 +191,11 @@ function CourseDetailsTab(props)
                 {budgets?portalBudget:""} 
             </Col>
         </Row>
+      {/*<Row>
+            <Col>
+            {projectTages?portalTages:""}
+            </Col>
+      </Row>  */}
        </Container>
     </div>);
 }
