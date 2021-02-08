@@ -97,7 +97,7 @@ const HoursApprovePage = (props) => {
 
     return (
         <div className="p-hours-approve">
-            <PortalNavbar handleLogout={handleLogout}/>
+            <PortalNavbar handleLogout={handleLogout} haedline='אישור שעות'/>
             <PortalDatePicker onlyMonth={true} handleDateSelection={onDateChange} date={{year, month, day}}/>
             <div className='search-wrapper'>
                 <PortalSearchPager placeholder='חיפוש עובד' handleSearch={setFilter} pagesNumber={Math.ceil(filteredData.length / 15)} 
