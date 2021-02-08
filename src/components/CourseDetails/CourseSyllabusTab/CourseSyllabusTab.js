@@ -18,9 +18,32 @@ function CourseSyllabusTab(props)
 
         syllabusToPresent= syllabus.map(function (syllabusSubject,index) {
                             const subSubjects = syllabusSubject.subsubjects;
-                            // console.log(subSubjects[0].subject);        
-                            const subSubjectsToPrint = subSubjects.map ((subSubject,index)=> <p key={index}>{subSubject.subject} </p>)
-                            console.log(subSubjectsToPrint);
+                            // console.log(subSubjects);        
+                            const subSubjectsLevel2 = subSubjects.map (function(subSubject,index){
+                                                        const subSubjects = subSubject.subsubjects; 
+                                                        // console.log(subSubjects) ;     
+                                                        
+                                                        const subSubjectsLevel3 = subSubjects.map ((subSubjectL3,index)=> <p  key={index}>{subSubjectL3.subject}</p>)
+
+
+                                                        return(
+
+                                                            <Accordion defaultActiveKey="0">
+                                                            <Card>
+                                                                <Card.Header>
+                                                                    <Accordion.Toggle as={Button} variant="link" eventKey="0">
+                                                                    {subSubject.subject}
+                                                                    </Accordion.Toggle>
+                                                                </Card.Header>
+                                                                <Accordion.Collapse eventKey="0">
+                                                                    <Card.Body>{subSubjectsLevel3}</Card.Body>
+                                                                </Accordion.Collapse>
+                                                            </Card>
+                                                            </Accordion> 
+                                                        )
+                                                     } )
+
+                            console.log(subSubjectsLevel2);
                             return (
                                     <>
                                        <Accordion defaultActiveKey="0">
@@ -31,7 +54,7 @@ function CourseSyllabusTab(props)
                                                     </Accordion.Toggle>
                                                 </Card.Header>
                                                 <Accordion.Collapse eventKey="0">
-                                                    <Card.Body>{subSubjectsToPrint}</Card.Body>
+                                                    <Card.Body>{subSubjectsLevel2}</Card.Body>
                                                 </Accordion.Collapse>
                                             </Card>
                                           
